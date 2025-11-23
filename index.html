@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cegonha Lanches - Artesanal</title>
+    <meta name="description"
+        content="O melhor hambúrguer artesanal da cidade. Sabor urbano e aconchegante no Cegonha Lanches.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="container">
+            <div class="container-titulo">
+            <a href="./index.html" class="logo">
+                <img src="assets/logo2.png" alt="Nome da Sua Hamburgueria" width="90" height="50">
+            </a>
+            <a href="#" class="logo">Cegonha<span class="highlight">Lanches</span></a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#menu">Cardápio</a></li>
+                    <li><a href="#combos">Combos</a></li>
+                    <li><a href="#about">Sobre Nós</a></li>
+                    <li>
+                        <button id="cart-btn" class="cart-btn" onclick="toggleCart()">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span id="cart-count" class="cart-count">0</span>
+                        </button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Sabor <span class="text-red">Artesanal</span><br><span class="text-red"></span></h1>
+                <p style="color: rgb(251, 255, 0); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: larger;">Descubra o verdadeiro sabor do hambúrguer feito com paixão. Ingredientes selecionados e um ambiente
+                    que te abraça.</p><br>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn-primary">Ver Cardápio</a>
+                    <a href="#contact" class="btn-outline">Fazer Pedido</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Placeholder for Hero Image -->
+                <img src="assets/principal.jpg" alt="Imagem da loja" class="hero-img-real">
+            </div>
+        </section><br>
+
+        <section id="menu">
+            <div class="container">
+                <h2 class="section-title">Nosso <span class="highlight">Cardápio</span></h2>
+                <div id="menu-grid" class="grid-container">
+                    <!-- Menu items will be injected here via JS -->
+                    <div class="loading-spinner">Carregando delícias...</div>
+                </div>
+            </div>
+        </section><br>
+
+        <section id="combos">
+            <div class="container">
+                <h2 class="section-title">Combos <span class="highlight">Imperdíveis</span></h2>
+                <div class="carousel">
+                    <!-- Combos will be injected here via JS -->
+                    <div class="loading-spinner">Carregando combos...</div>
+                </div>
+            </div>
+        </section><br>
+
+        <section id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2 class="section-title">Sobre a <span class="highlight">Cegonha</span></h2>
+                        <p>A Cegonha Lanches nasceu com um propósito simples: entregar sabor, qualidade e aquele acolhimento que só uma boa lanchonete consegue oferecer. Aqui, cada lanche é preparado com cuidado, ingredientes selecionados e a paixão de quem realmente gosta de ver o cliente satisfeito.
+                            Nossa cozinha combina tradição e criatividade. Da chapa sempre saem hambúrgueres suculentos, pães fresquinhos e combinações que agradam todos os paladares — dos clássicos aos mais ousados. Os molhos especiais são preparados diariamente, garantindo uma experiência única em cada mordida.
+                            Com um ambiente descontraído e atendimento acolhedor, a Cegonha Lanches é o lugar perfeito para reunir amigos, matar a fome depois do trabalho ou simplesmente se presentear com um lanche caprichado.
+                            Aqui, a missão é clara: fazer com que seu pedido chegue rápido, quente e irresistível — do jeitinho que você merece.
+                            Cegonha Lanches. Mais que uma lanchonete, um pouso seguro para quem busca sabor de verdade.br</p><br>
+                        <section id="contact">
+                            <div class="container">
+                            <h2 class="section-title">Entre em <span class="highlight">Contato</span></h2>
+                            <div class="contact-wrapper">
+                                <form id="contact-form" class="contact-form">
+                                    <div class="form-group">
+                                        <label for="name">Nome</label>
+                                        <input type="text" id="name" name="name" required placeholder="Seu nome">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">WhatsApp</label>
+                                        <input type="tel" id="phone" name="phone" required
+                                            placeholder="(00) 00000-0000">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Endereço</label>
+                                        <input id="address" name="address" required
+                                            placeholder="Ex: Rua 10">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="number">N°</label>
+                                        <input id="number" name="number" required
+                                            placeholder="Ex: 345">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Mensagem</label>
+                                        <textarea id="message" name="message" rows="4"
+                                            placeholder="Como podemos lhe ajudar?"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn-whts">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                        Enviar Mensagem
+                                    </button>
+                                </form>
+                                <div class="contact-info"><br>
+                                    <h3 style="align-items: center;">Endereço</h3>
+                                    <p>Rua das Cegonhas, 123 - Centro</p>
+                                    <p>Cidade - ES</p><br><br><br>
+                                    <div class="social-links">
+                                        <a id="insta" href="https://instagram.com/seu_perfil" target="_blank" class="social-icon" aria-label="Instagram">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 2.163C15.204 2.163 15.584 2.175 16.85 2.233C20.102 2.381 21.621 3.924 21.769 7.152C21.827 8.417 21.838 8.797 21.838 12.001C21.838 15.206 21.826 15.585 21.769 16.85C21.62 20.075 20.105 21.621 16.85 21.769C15.584 21.827 15.206 21.839 12.001 21.839C8.796 21.839 8.416 21.827 7.151 21.769C3.891 21.62 2.38 20.07 2.232 16.849C2.174 15.584 2.162 15.205 2.162 12C2.162 8.796 2.175 8.417 2.232 7.151C2.381 3.924 3.896 2.38 7.151 2.232C8.417 2.175 8.796 2.163 12 2.163ZM12 0C8.741 0 8.333 0.014 7.053 0.072C2.695 0.272 0.273 2.69 0.073 7.052C0.014 8.333 0 8.741 0 12C0 15.259 0.014 15.668 0.072 16.948C0.272 21.306 2.69 23.728 7.052 23.928C8.333 23.986 8.741 24 12 24C15.259 24 15.668 23.986 16.948 23.928C21.302 23.728 23.73 21.31 23.927 16.948C23.986 15.668 24 15.259 24 12C24 8.741 23.986 8.333 23.927 7.052C23.732 2.699 21.311 0.273 16.949 0.073C15.668 0.014 15.259 0 12 0V0ZM12 5.838C8.597 5.838 5.838 8.597 5.838 12C5.838 15.403 8.597 18.163 12 18.163C15.403 18.163 18.162 15.403 18.162 12C18.162 8.597 15.403 5.838 12 5.838ZM12 16C9.791 16 8 14.21 8 12C8 9.791 9.791 8 12 8C14.209 8 16 9.791 16 12C16 14.21 14.209 16 12 16ZM18.406 4.155C17.61 4.155 16.965 4.8 16.965 5.595C16.965 6.39 17.61 7.035 18.406 7.035C19.201 7.035 19.845 6.39 19.845 5.595C19.845 4.8 19.201 4.155 18.406 4.155Z" fill="currentColor"/>
+                                            </svg> <span>Instagram</span>
+                                        </a>
+
+                                        <a id="face" href="https://www.facebook.com/share/1Nt35Cf2nR/" target="_blank" class="social-icon" aria-label="Facebook">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.101 23.691V13.063H5.578V9.063H9.101V6.062C9.101 2.653 11.205 0.755 14.277 0.755C15.751 0.755 17.012 0.864 17.381 0.914V4.478H15.253C13.568 4.478 13.237 5.278 13.237 6.452V9.063H17.258L16.735 13.063H13.237V23.691H9.101Z" fill="currentColor"/>
+                                            </svg> <span>Facebook</span>
+                                        </a>
+
+                                        <a id="wa" href="https://wa.me/5534999999999" target="_blank" class="social-icon" aria-label="WhatsApp">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12C2 13.84 2.48 15.56 3.33 17.06L2 22L7.07 20.67C8.52 21.5 10.2 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM17.13 14.36C17.07 14.26 16.92 14.2 16.71 14.1C16.5 14 15.48 13.5 15.29 13.43C15.1 13.36 14.97 13.33 14.83 13.53C14.69 13.73 14.3 14.2 14.17 14.33C14.05 14.47 13.92 14.48 13.71 14.38C13.5 14.28 12.83 14.06 12.04 13.35C11.43 12.81 11.02 12.14 10.9 11.93C10.78 11.72 10.89 11.61 11 11.51C11.09 11.42 11.2 11.28 11.3 11.16C11.4 11.04 11.44 10.96 11.5 10.83C11.57 10.7 11.53 10.58 11.48 10.48C11.43 10.38 11.03 9.4 10.87 9.01C10.7 8.62 10.54 8.68 10.42 8.68C10.31 8.68 10.18 8.68 10.05 8.68C9.92 8.68 9.71 8.73 9.53 8.93C9.35 9.13 8.84 9.61 8.84 10.58C8.84 11.55 9.55 12.49 9.65 12.63C9.76 12.76 11.05 14.75 13.03 15.6C13.5 15.81 13.87 15.93 14.16 16.02C14.63 16.17 15.06 16.15 15.4 16.1C15.78 16.05 16.57 15.62 16.73 15.16C16.9 14.7 16.9 14.3 16.85 14.23C16.8 14.15 16.67 14.1 16.46 14V14.36V14.36ZM12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20C10.54 20 9.16 19.61 7.97 18.92L7.69 18.76L4.72 19.54L5.51 16.65L5.33 16.36C4.52 15.08 4.1 13.57 4.1 12C4 7.59 7.59 4 12 4Z" fill="currentColor"/>
+                                        </svg> <span>WhatsApp</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </section>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cegonha Lanches. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <div id="cart-sidebar" class="cart-sidebar">
+    <div class="cart-header">
+        <h3>Meu Pedido</h3>
+        <button class="close-cart" onclick="toggleCart()">&times;</button>
+    </div>
+    
+    <div id="cart-items" class="cart-items-container">
+        <p class="empty-msg">Seu carrinho está vazio 🍔</p>
+    </div>
+
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total-price">R$ 0,00</span>
+        </div>
+        <button class="btn-primary" style="width: 100%" onclick="finalizarPedido()">
+            Fechar Pedido
+        </button>
+        </div>
+        </div>
+
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
