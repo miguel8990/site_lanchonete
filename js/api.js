@@ -8,35 +8,91 @@ export const fetchMenu = () => {
       resolve([
         {
           id: 1,
-          name: "BEM-TE-VI",
+          name: "FALCÃO",
           description:
-            "Pão brioche, burger 180g, queijo cheddar, alface, tomate e maionese da casa.",
-          price: 28.9,
-          image: "assets/bem-te-vi-img.jpg",
+            "Pão, presunto, mussarela, ovo, requeijão, bacon, milho, alface, tomate.",
+          price: 30.0,
+          image: "assets/falcao.png",
         },
         {
           id: 2,
-          name: "Bacon Supremo",
+          name: "ÁGUIA",
           description:
-            "Pão australiano, burger 180g, muito bacon crocante, cheddar inglês e cebola caramelizada.",
-          price: 34.9,
-          image: "assets/burger_bacon.png",
+            "Pão, Hambúrguer da casa, duas fatias de presunto, Mussarela, ovo, Bacon, Cenoura, Milho, Alface, Tomate.",
+          price: 35.0,
+          image: "assets/aguia.png",
         },
         {
           id: 3,
-          name: "Frango Crocante",
+          name: "CALOPSITA",
           description:
-            "Pão de gergelim, sobrecoxa desossada empanada, cream cheese, alface americana e picles.",
-          price: 26.5,
-          image: "assets/burger_chicken.png",
+            "Pão, hambúrguer, presunto, mussarela, ovo, salsicha, bacon, creme de leite, milho, alface, tomate.",
+          price: 30.0,
+          image: "assets/calopsita.png",
         },
         {
           id: 4,
-          name: "Veggie Power",
+          name: "CANÁRIO",
           description:
-            "Pão integral, burger de grão de bico, cogumelos salteados, rúcula e tomate seco.",
+            "Pão, hambúrguer, presunto, mussarela, 2 ovos, bacon, requeijão, milho, alface, tomate.",
           price: 30.0,
-          image: "assets/burger_veggie.png",
+          image: "assets/canario.png",
+        },
+        {
+          id: 5,
+          name: "CEGONHA-TURBO",
+          description:
+            "Pão, hambúrguer, presunto, mussarela, ovo, requeijão, bacon, lombo, frango, filé, salsicha, milho, tomate, alface.",
+          price: 45.0,
+          image: "assets/cegonha-turbo.png",
+        },
+        {
+          id: 6,
+          name: "BEM-TE-VI",
+          description:
+            "Pão, hambúrguer, presunto, mussarela, ovo, bacon, milho, alface, tomate.",
+          price: 25.0,
+          image: "assets/bem-te-vi.png",
+        },
+        {
+          id: 7,
+          name: "BEIJA-FLOR",
+          description:
+            "Pão, hambúrguer, presunto, mussarela, ovo, requeijão, cenoura, milho, ervilha, alface, tomate.",
+          price: 26.0,
+          image: "assets/beija-flor.png",
+        },
+        {
+          id: 8,
+          name: "BEM-TE-VI-ARTESANAL",
+          description:
+            "Pão, hambúrguer da casa, presunto, mussarela, ovo, bacon, cenoura, milho, alface, tomate.",
+          price: 30.0,
+          image: "assets/bem-te-vi-artesanal.png",
+        },
+        {
+          id: 9,
+          name: "VEGETARIANO",
+          description:
+            "Pão, 2 mussarelas, ovo, requeijão, cenoura, milho, alface, tomate, batata palha.",
+          price: 18.0,
+          image: "assets/vegetariano.png",
+        },
+        {
+          id: 10,
+          name: "CEGONHA-KIDS",
+          description:
+            "Pão, hambúrguer, 2 fatias de presunto, mussarela, ovo, bacon, cheddar, milho, alface, tomate, batata palha.",
+          price: 20.0,
+          image: "assets/kids.png",
+        },
+        {
+          id: 11,
+          name: "X-CAIPIRA",
+          description:
+            "Pão, hambúrguer de linguiça suína, presunto, mussarela, ovo, bacon, cenoura, milho, alface, tomate.",
+          price: 30.0,
+          image: "assets/no-image.png",
         },
       ]);
     }, 800); // Simulate network delay
@@ -49,18 +105,19 @@ export const fetchCombos = () => {
       resolve([
         {
           id: 101,
-          name: "Combo Casal",
+          name: "COMBO CALOPSITA + BATATA FRITA",
           description:
-            "2 Cegonha Clássicos + 2 Batatas Fritas + 2 Refrigerantes.",
-          price: 85.0,
-          image: "assets/burger_classic.png",
+            "Pão, Hambúrguer, Presunto, Ovo, Salsicha, Bacon, Creme de Leite, Alface, Tomate, Milho, Batata Palha + 250G de Batata Frita",
+          price: 45.0,
+          image: "assets/combo-calopsita-fritas.jpg",
         },
         {
           id: 102,
-          name: "Combo Família",
-          description: "4 Burgers (à escolha) + 4 Batatas + 1 Refrigerante 2L.",
-          price: 140.0,
-          image: "assets/burger_classic.png",
+          name: "COMBO-ESPECIAL",
+          description:
+            "3 BEM-TE-VI: Pão, hambúrguer, presunto, mussarela, ovo, bacon, milho, alface, tomate + 1 Cotuba 2 ",
+          price: 80.0,
+          image: "assets/combo-especial.png",
         },
       ]);
     }, 1000);
