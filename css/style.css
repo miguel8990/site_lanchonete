@@ -373,6 +373,10 @@ h2.section-title::after {
 }
 
 .menu-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
   background-color: var(--color-gray);
   border-radius: var(--border-radius);
   overflow: hidden;
@@ -399,6 +403,9 @@ h2.section-title::after {
 
 .menu-info {
   padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .menu-info h3 {
@@ -412,6 +419,10 @@ h2.section-title::after {
   color: var(--color-cream);
   margin-top: var(--spacing-sm);
   display: block;
+}
+
+.menu-info button {
+  margin-top: auto;
 }
 
 /* --- SOBRE NÓS --- */
