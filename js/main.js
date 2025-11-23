@@ -98,6 +98,11 @@ function finalizarPedido() {
 
   // Fecha o carrinho
   toggleCart();
+  const navLinks = document.querySelector(".nav-links");
+  if (navLinks) {
+    // Limpa o estilo inline, fazendo ele voltar a ficar escondido pelo CSS
+    navLinks.style = "";
+  }
 
   // Rola a tela suavemente até o formulário
   const formSection = document.getElementById("contact");
