@@ -279,12 +279,16 @@ function initContactForm() {
     // --- CAPTURA SEGURA DOS DADOS ---
     // Usamos querySelector para garantir que pegamos o campo certo pelo NAME
     const dadosCompletos = {
+      // Pega o valor do input onde name="name"
       name: form.querySelector('input[name="name"]').value,
       phone: form.querySelector('input[name="phone"]').value,
 
-      // ESTAS DUAS LINHAS SÃO NOVAS E OBRIGATÓRIAS:
+      // --- NOVOS DADOS DE ENDEREÇO ADICIONADOS AQUI ---
       address: form.querySelector('input[name="address"]').value,
       number: form.querySelector('input[name="number"]').value,
+      bairro: form.querySelector('input[name="bairro"]').value, // <--- NOVO
+      comp: form.querySelector('input[name="comp"]').value, // <--- NOVO
+      // ------------------------------------------------
 
       message: form.querySelector('textarea[name="message"]').value,
       resumoCarrinho: resumoTexto,

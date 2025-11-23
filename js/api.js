@@ -74,12 +74,16 @@ export async function submitOrder(data) {
 
   // Formata a mensagem para o WhatsApp
   // Usamos \n para quebra de linha visual, o encodeURIComponent tratará isso para a URL
+  // No js/api.js
+
   const texto =
     `*NOVO PEDIDO - SITE*\n\n` +
     `👤 *Nome:* ${data.name}\n` +
-    `📱 *WhatsApp:* ${data.phone}\n` +
-    `📍 *Endereço:* ${data.address}\n` +
-    `🔢 *Número:* ${data.number}\n` +
+    `📱 *WhatsApp:* ${data.phone}\n\n` +
+    `🛵 *DADOS DE ENTREGA:*\n` +
+    `📍 *Endereço:* ${data.address}, ${data.number}\n` +
+    `🏘️ *Bairro:* ${data.bairro}\n` + // <--- ADICIONE ISSO
+    `📌 *Complemento:* ${data.comp}\n` + // <--- ADICIONE ISSO
     `----------------------------------\n` +
     `🛒 *PEDIDO:*\n${data.resumoCarrinho}\n` +
     `----------------------------------\n` +

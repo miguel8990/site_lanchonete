@@ -721,3 +721,88 @@ footer {
     height: 220px; /* Altura um pouco menor no celular */
   }
 }
+/* --- FOOTER COMPLETO --- */
+footer {
+  background-color: #0d0d0d; /* Quase preto, para diferenciar do fundo normal */
+  color: #ccc;
+  padding-top: 60px;
+  padding-bottom: 20px;
+  border-top: 1px solid #333;
+  margin-top: 60px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.footer-col h3 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.footer-col h4 {
+  color: var(--color-gold);
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  border-bottom: 2px solid #333;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--color-gold);
+  padding-left: 5px; /* Efeitinho de mover para o lado */
+}
+
+/* Ícones de Pagamento */
+.payment-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* Barra Final (Legal) */
+.footer-bottom {
+  border-top: 1px solid #222;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.legal-text {
+  opacity: 0.6; /* Deixa o texto legal mais discreto */
+  margin-top: 5px;
+  font-size: 0.8rem;
+}
+
+/* Ajuste Mobile */
+@media (max-width: 768px) {
+  .footer-content {
+    text-align: center;
+  }
+
+  .payment-icons {
+    justify-content: center;
+  }
+}
