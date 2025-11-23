@@ -390,10 +390,10 @@ h2.section-title::after {
 }
 
 .menu-img {
-  height: 200px;
+  aspect-ratio: 1/1;
   background-color: #444;
   width: 100%;
-  object-fit: fill;
+  object-fit: cover;
   display: block;
 }
 
