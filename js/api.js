@@ -70,7 +70,7 @@ export const fetchCombos = () => {
 // --- NOVA LÓGICA DE ENVIO ---
 export async function submitOrder(data) {
   // Configurações
-  const telefoneRestaurante = "5534984057228"; // SUBSTITUA PELO SEU NÚMERO
+  const telefoneRestaurante = "553434998978760"; // SUBSTITUA PELO SEU NÚMERO
 
   // Formata a mensagem para o WhatsApp
   // Usamos \n para quebra de linha visual, o encodeURIComponent tratará isso para a URL
