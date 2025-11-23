@@ -24,6 +24,7 @@ function adicionarAoCarrinho(nome, preco) {
   carrinho.push({ nome, preco });
   // Atualiza a tela
   atualizarCarrinhoUI();
+  atualizarBotoesMenu();
 
   // Abre o carrinho automaticamente para o usuário ver
   //toggleCart(false);
@@ -32,6 +33,7 @@ function removerItem(index) {
   // Remove o item pelo índice
   carrinho.splice(index, 1);
   atualizarCarrinhoUI();
+  atualizarBotoesMenu();
 }
 function atualizarCarrinhoUI() {
   const container = document.getElementById("cart-items");
@@ -108,12 +110,18 @@ function finalizarPedido() {
 async function initMenu() {
   const menuGrid = document.getElementById("menu-grid");
   if (!menuGrid) return;
+
   try {
     const menuItems = await fetchMenu();
     menuGrid.innerHTML = menuItems
       .map((item) => createMenuItemCard(item))
       .join("");
+
+    // AQUI ESTÁ A NOVA LINHA (sem pontinhos depois)
+    atualizarBotoesMenu();
   } catch (error) {
+    // O bloco catch precisa ser completo assim:
+    console.error(error);
     menuGrid.innerHTML =
       '<p class="error">Ops! Não conseguimos carregar o cardápio.</p>';
   }
@@ -122,12 +130,18 @@ async function initMenu() {
 async function initCombos() {
   const combosContainer = document.querySelector("#combos .carousel");
   if (!combosContainer) return;
+
   try {
     const combos = await fetchCombos();
     combosContainer.innerHTML = combos
       .map((combo) => createComboCard(combo))
       .join("");
+
+    // AQUI ESTÁ A NOVA LINHA
+    atualizarBotoesMenu();
   } catch (error) {
+    // Bloco catch completo
+    console.error(error);
     combosContainer.innerHTML =
       '<p class="error">Ops! Não conseguimos carregar os combos.</p>';
   }
@@ -146,7 +160,10 @@ function createMenuItemCard(item) {
                 <span class="price">R$ ${item.price
                   .toFixed(2)
                   .replace(".", ",")}</span>
-                <button class="btn-outline" style="margin-top: 1rem; width: 100%" 
+                
+                <button class="btn-outline btn-add-item" 
+                    data-name="${item.name}"
+                    style="margin-top: 1rem; width: 100%" 
                     onclick="window.adicionarAoCarrinho('${item.name}', ${
     item.price
   })">
@@ -169,7 +186,10 @@ function createComboCard(combo) {
                 <span class="price">R$ ${combo.price
                   .toFixed(2)
                   .replace(".", ",")}</span>
-                <button class="btn-primary" style="margin-top: 1rem; width: 100%" 
+                
+                <button class="btn-primary btn-add-item" 
+                    data-name="${combo.name}"
+                    style="margin-top: 1rem; width: 100%" 
                     onclick="window.adicionarAoCarrinho('${combo.name}', ${
     combo.price
   })">
@@ -179,7 +199,40 @@ function createComboCard(combo) {
         </div>
     `;
 }
+// Função para atualizar os textos dos botões
+function atualizarBotoesMenu() {
+  // Pega todos os botões que têm a classe que criamos
+  const botoes = document.querySelectorAll(".btn-add-item");
 
+  botoes.forEach((btn) => {
+    const nomeItem = btn.getAttribute("data-name");
+
+    // Conta quantas vezes esse nome aparece no carrinho
+    // O 'filter' cria um novo array só com esse item, e o 'length' conta
+    const quantidade = carrinho.filter((item) => item.nome === nomeItem).length;
+
+    if (quantidade > 0) {
+      // Se tiver item, muda o texto e o estilo
+      btn.innerHTML = `Adicionado (${quantidade})`;
+      btn.style.backgroundColor = "var(--color-gold)";
+      btn.style.color = "var(--color-black)";
+      btn.style.borderColor = "var(--color-gold)";
+    } else {
+      // Se não tiver, volta ao original
+      // Verifica se é botão de combo (Primary) ou normal (Outline) para restaurar texto certo
+      if (btn.classList.contains("btn-primary")) {
+        btn.innerText = "Eu Quero!";
+        btn.style = "margin-top: 1rem; width: 100%"; // Reseta estilos inline se necessário
+      } else {
+        btn.innerText = "Adicionar";
+        // Reseta as cores para o padrão do CSS (remove o inline que colocamos acima)
+        btn.style.backgroundColor = "";
+        btn.style.color = "";
+        btn.style.borderColor = "";
+      }
+    }
+  });
+}
 // 6. Formulário e Envio (AQUI ESTAVA O SEGREDO)
 function initContactForm() {
   const form = document.getElementById("contact-form");

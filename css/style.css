@@ -24,18 +24,24 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden; /* Impede rolagem lateral indesejada no celular */
+  width: 100%;
+}
+
 body {
   font-family: var(--font-main);
   background-color: var(--color-black);
   color: var(--color-text);
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
+/* --- CONTAINER GERAL --- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: 0 20px; /* Padding lateral seguro para celular */
 }
 
 .container-titulo {
@@ -43,7 +49,7 @@ body {
   align-items: center;
 }
 
-/* Typography */
+/* --- TIPOGRAFIA --- */
 h1,
 h2,
 h3 {
@@ -52,12 +58,18 @@ h3 {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.5rem; /* Reduzi um pouco para mobile */
   margin-bottom: var(--spacing-md);
 }
 
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3.5rem;
+  } /* Aumenta no PC */
+}
+
 h2.section-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: center;
   margin-bottom: var(--spacing-xl);
   position: relative;
@@ -84,7 +96,7 @@ h2.section-title::after {
   color: var(--color-red);
 }
 
-/* Buttons */
+/* --- BOTÕES --- */
 .btn-primary,
 .btn-whts,
 .btn-outline {
@@ -96,6 +108,7 @@ h2.section-title::after {
   transition: var(--transition);
   cursor: pointer;
   border: 2px solid transparent;
+  text-align: center;
 }
 
 .btn-primary {
@@ -111,18 +124,23 @@ h2.section-title::after {
 .btn-whts {
   background-color: #075e54;
   color: var(--color-cream);
+  width: 100%; /* No mobile fica bom ocupar tudo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-whts:hover {
   background-color: #128c7e;
   color: var(--color-cream);
-  transform: translate(-2px);
+  transform: translateY(-2px);
 }
 
 .btn-whts i {
   margin-right: 8px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
+
 .btn-outline {
   border-color: var(--color-gold);
   color: var(--color-gold);
@@ -134,83 +152,15 @@ h2.section-title::after {
   color: var(--color-black);
   transform: translateY(-2px);
 }
-/*Social links*/
-/* Container: coloca os ícones lado a lado e remove as quebras de linha */
-.social-links {
-  display: flex;
-  flex-direction: column; /* Garante que fiquem lado a lado */
 
-  /* 1. CENTRALIZAR OS ÍCONES DENTRO DA CAIXA WHEAT */
-  justify-content: flex-start; /* Alinha na horizontal (centro) */
-  align-items: flex-start; /* Alinha na vertical (centro) */
-
-  gap: 20px; /* Espaço entre os ícones */
-
-  /* 2. TAMANHO DA CAIXA */
-  width: 100%; /* Tenta ocupar tudo... */
-  min-width: 300px; /* ...mas para em 300px */
-  padding: 0 20px;
-  height: 60px;
-
-  border-radius: 8px; /* Opcional: deixa a caixinha arredondada */
-
-  /* 3. CENTRALIZAR A CAIXA DENTRO DO PAI */
-  margin-top: 15px;
-  margin-left: auto; /* Empurra da esquerda */
-  margin-right: auto; /* Empurra da direita */
-}
-/* Cores Oficiais das Marcas */
-#insta {
-  color: #e1306c; /* Rosa/Roxo do Instagram */
-}
-
-#face {
-  color: #1877f2; /* Azul do Facebook */
-}
-
-#wa {
-  color: #25d366; /* Verde do WhatsApp */
-}
-
-/* Efeito ao passar o mouse (aumenta o brilho) */
-.social-icon:hover {
-  filter: brightness(1.2); /* Deixa a cor 20% mais brilhante */
-  transform: translateX(5px); /* Move levemente para a direita */
-}
-.social-icon {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  gap: 8px;
-  /* Cor padrão do ícone (Creme) */
-  color: var(--color-cream);
-  font-weight: 600;
-  font-size: 0.9rem;
-
-  transition: all 0.3s ease;
-}
-
-/* Tamanho do SVG */
-.social-icon svg {
-  width: 24px;
-  height: 24px;
-}
-
-/* Efeito ao passar o mouse */
-.social-icon:hover {
-  color: var(--color-gold); /* Ícone fica dourado */
-  transform: translateY(5px); /* Pula um pouquinho */
-  filter: brightness(1.2);
-}
-
-/* Header */
+/* --- HEADER & NAVEGAÇÃO --- */
 #main-header {
-  padding: var(--spacing-md) 0;
+  padding: 15px 0;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
-  background-color: rgba(26, 26, 26, 0.95);
+  background-color: rgba(26, 26, 26, 0.98);
   backdrop-filter: blur(5px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -222,7 +172,7 @@ h2.section-title::after {
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--color-cream);
   text-decoration: none;
@@ -231,29 +181,13 @@ h2.section-title::after {
   gap: 5px;
 }
 
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: var(--spacing-lg);
-  align-items: center;
-}
-
-.nav-links a {
-  color: var(--color-cream);
-  text-decoration: none;
-  font-weight: 500;
-  transition: var(--transition);
-}
-
-.nav-links a:not(.btn-primary):hover {
-  color: var(--color-gold);
-}
-
+/* Botão Hamburger (Mobile) */
 .hamburger {
-  display: none;
+  display: flex;
   flex-direction: column;
   cursor: pointer;
   gap: 5px;
+  z-index: 1001;
 }
 
 .hamburger span {
@@ -263,39 +197,154 @@ h2.section-title::after {
   transition: var(--transition);
 }
 
-/* Hero Section */
-#hero {
-  min-height: 100vh; /* Garante altura total */
+/* Menu de Navegação (Links) */
+.nav-links {
+  display: none; /* Escondido por padrão no mobile */
+  /* O JS vai adicionar display: flex quando clicar */
+  flex-direction: column;
+  position: absolute;
+  top: 100%; /* Logo abaixo do header */
+  left: 0;
+  width: 100%;
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-bottom: 1px solid #333;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+/* Quando a tela for PC, muda o comportamento do menu */
+@media (min-width: 769px) {
+  .hamburger {
+    display: none;
+  } /* Esconde hamburger no PC */
+
+  .nav-links {
+    display: flex; /* Mostra menu no PC */
+    flex-direction: row;
+    position: static;
+    width: auto;
+    background: none;
+    padding: 0;
+    border: none;
+    gap: var(--spacing-lg);
+  }
+}
+
+.nav-links a {
+  color: var(--color-cream);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--color-gold);
+}
+
+/* --- BOTÃO DO CARRINHO (NO MENU) --- */
+.cart-btn {
+  background: transparent;
+  border: 2px solid var(--color-gold);
+  color: var(--color-cream);
+  padding: 6px 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  font-size: 1.1rem;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* No mobile, centralizamos ele na lista do menu */
+  margin: 0 auto;
+}
+
+@media (min-width: 769px) {
+  .cart-btn {
+    margin: 0;
+  } /* No PC remove a margem auto */
+}
+
+.cart-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-black);
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--color-red);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
   display: flex;
   align-items: center;
-  padding-top: 80px;
-  position: relative;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--color-black);
+}
+
+/* --- HERO SECTION --- */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column-reverse; /* Imagem em cima/baixo do texto no mobile */
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px; /* Espaço do header */
+  padding-bottom: 40px;
   background: linear-gradient(135deg, var(--color-black) 0%, #2a2a2a 100%);
+  text-align: center;
+}
+
+@media (min-width: 769px) {
+  #hero {
+    flex-direction: row; /* Lado a lado no PC */
+    text-align: left;
+    padding-top: 80px;
+  }
 }
 
 #hero .hero-content {
   flex: 1;
-  padding-left: 10%;
+  width: 100%;
+  padding: 20px;
   z-index: 2;
+}
+
+@media (min-width: 769px) {
+  #hero .hero-content {
+    padding-left: 10%;
+  }
 }
 
 #hero .hero-image {
   flex: 1;
-  height: 100%;
-  position: relative;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
 }
 
-/* --- ESTILO CORRETO DO HAMBÚRGUER --- */
+/* A Imagem do Hambúrguer (Responsiva) */
 .hero-img-real {
-  max-width: 100%;
+  width: 80%; /* Ocupa 80% da largura do celular */
+  max-width: 320px; /* Não deixa ficar gigante no mobile */
   height: auto;
-  width: 550px; /* Tamanho fixo para não estourar */
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
   animation: flutuar 3s ease-in-out infinite;
+}
+
+@media (min-width: 769px) {
+  .hero-img-real {
+    width: 100%;
+    max-width: 550px; /* Pode crescer mais no PC */
+  }
 }
 
 @keyframes flutuar {
@@ -310,11 +359,17 @@ h2.section-title::after {
   }
 }
 
-/* Menu Grid */
+/* --- CARDÁPIO GRID --- */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: 1fr; /* 1 coluna no mobile */
   gap: var(--spacing-lg);
+}
+
+@media (min-width: 600px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
 }
 
 .menu-item {
@@ -323,8 +378,9 @@ h2.section-title::after {
   overflow: hidden;
   transition: var(--transition);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  margin: 0 auto;
   width: 100%;
+  max-width: 400px; /* Limita largura no mobile */
+  margin: 0 auto; /* Centraliza */
 }
 
 .menu-item:hover {
@@ -339,7 +395,6 @@ h2.section-title::after {
   width: 100%;
   object-fit: cover;
   display: block;
-  max-width: 100%;
 }
 
 .menu-info {
@@ -359,33 +414,48 @@ h2.section-title::after {
   display: block;
 }
 
-/* About Section */
+/* --- SOBRE NÓS --- */
 .about-content {
   display: flex;
+  flex-direction: column; /* Empilhado no mobile */
   gap: var(--spacing-xl);
   align-items: center;
 }
+
+@media (min-width: 769px) {
+  .about-content {
+    flex-direction: row;
+  }
+}
+
 .about-text {
   flex: 1;
 }
 .about-image {
   flex: 1;
-  height: 400px;
+  width: 100%;
 }
 
-/* Contact Section (Ajustado) */
+/* --- CONTATO & FORMULÁRIO --- */
 #contact {
-  padding: 80px 0;
+  padding: 60px 0;
   background-color: #1a1a1a;
 }
 
 .contact-wrapper {
   display: flex;
-  gap: var(--spacing-xl);
+  flex-direction: column; /* Empilhado no mobile */
+  gap: 40px;
   background-color: var(--color-gray);
-  padding: var(--spacing-xl);
+  padding: 20px;
   border-radius: var(--border-radius);
-  flex-wrap: wrap;
+}
+
+@media (min-width: 769px) {
+  .contact-wrapper {
+    flex-direction: row;
+    padding: var(--spacing-xl);
+  }
 }
 
 .contact-form {
@@ -394,12 +464,36 @@ h2.section-title::after {
 
 .contact-info-box {
   flex: 1;
-  border-left: 1px solid #444;
-  padding-left: var(--spacing-lg);
+  border-top: 1px solid #444;
+  padding-top: 30px;
 }
 
+@media (min-width: 769px) {
+  .contact-info-box {
+    border-top: none;
+    border-left: 1px solid #444;
+    padding-top: 0;
+    padding-left: var(--spacing-lg);
+  }
+}
+
+/* Campos do Formulário */
 .form-group {
   margin-bottom: var(--spacing-md);
+}
+
+/* Form Row (Rua e Número na mesma linha) */
+.form-row {
+  display: flex;
+  flex-direction: column; /* Empilhado no mobile (facilita digitar) */
+  gap: 0;
+}
+
+@media (min-width: 600px) {
+  .form-row {
+    flex-direction: row;
+    gap: 15px;
+  }
 }
 
 .form-group label {
@@ -425,114 +519,102 @@ h2.section-title::after {
   border-color: var(--color-gold);
 }
 
-/* Footer */
-footer {
-  background-color: #000;
-  padding: var(--spacing-lg) 0;
-  text-align: center;
-  margin-top: var(--spacing-xl);
-  border-top: 1px solid #222;
+/* Área de Endereço Destacada */
+.address-section {
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #444;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  .nav-links {
-    display: none;
-  } /* O JS vai mudar isso para flex ao clicar */
-
-  .hamburger {
-    display: flex;
-  }
-
-  #hero {
-    flex-direction: column-reverse;
-    padding-top: 100px;
-    height: auto;
-    padding-bottom: var(--spacing-xl);
-    text-align: center;
-  }
-
-  #hero .hero-content {
-    padding-left: 0;
-    padding: 0 20px;
-  }
-
-  .hero-img-real {
-    width: 80%;
-    max-width: 350px;
-    margin-bottom: 30px;
-  }
-
-  .about-content,
-  .contact-wrapper {
-    flex-direction: column;
-  }
-
-  .contact-info-box {
-    border-left: none;
-    padding-left: 0;
-    border-top: 1px solid #444;
-    padding-top: 20px;
-  }
+/* --- REDES SOCIAIS (Onde Estamos) --- */
+.info-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: flex-start;
 }
 
-/* --- BOTÃO DO CARRINHO NO MENU --- */
-.cart-btn {
-  background: transparent;
-  border: 2px solid var(--color-gold);
-  color: var(--color-cream);
-  padding: 8px 12px;
-  border-radius: 50px;
-  cursor: pointer;
-  position: relative;
-  font-size: 1.2rem;
-  margin-right: 15px; /* Espaço do hamburger */
-  transition: 0.3s;
-}
-
-.cart-btn:hover {
-  background: var(--color-gold);
-  color: var(--color-black);
-}
-
-.cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: var(--color-red);
-  color: white;
-  font-size: 0.8rem;
-  font-weight: bold;
-  width: 20px;
-  height: 20px;
+.icon-box {
+  color: var(--color-red);
+  background: rgba(255, 255, 255, 0.05);
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
-/* --- SIDEBAR (JANELA LATERAL) --- */
+.info-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #fff;
+}
+.info-text {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
+  align-items: flex-start;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 10px;
+  color: var(--color-cream);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateX(5px);
+}
+
+/* Cores Social Hover */
+#insta:hover {
+  color: #e1306c;
+}
+#face:hover {
+  color: #1877f2;
+}
+#wa:hover {
+  color: #25d366;
+}
+
+/* --- CARRINHO LATERAL (SIDEBAR) --- */
 .cart-sidebar {
   position: fixed;
   top: 0;
-  right: -400px; /* Começa escondido */
-  width: 350px;
+  right: -100%; /* Escondido */
+  width: 100%; /* Mobile: Ocupa tela toda */
   height: 100%;
   background-color: #1a1a1a;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
   z-index: 2000;
-  transition: right 0.4s ease; /* Animação de deslize */
+  transition: right 0.3s ease;
   display: flex;
   flex-direction: column;
   padding: 20px;
   border-left: 1px solid #333;
 }
 
-/* Classe que ativa o menu (JS adiciona essa classe) */
+@media (min-width: 480px) {
+  .cart-sidebar {
+    width: 350px; /* PC: Largura fixa */
+    right: -400px;
+  }
+}
+
 .cart-sidebar.open {
   right: 0;
 }
@@ -546,23 +628,9 @@ footer {
   margin-bottom: 15px;
 }
 
-.cart-header h3 {
-  margin: 0;
-  color: var(--color-gold);
-}
-
-.close-cart {
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: #fff;
-  cursor: pointer;
-}
-
-/* Lista de Itens */
 .cart-items-container {
-  flex: 1; /* Ocupa o espaço do meio */
-  overflow-y: auto; /* Permite rolar se tiver muitos itens */
+  flex: 1;
+  overflow-y: auto;
 }
 
 .cart-item-row {
@@ -575,29 +643,13 @@ footer {
   border-radius: 5px;
 }
 
-.cart-item-info h4 {
-  font-size: 0.9rem;
-  margin-bottom: 5px;
-  color: #fff;
-}
-.cart-item-info p {
-  font-size: 0.85rem;
-  color: var(--color-gold);
-  margin: 0;
-}
-
 .remove-btn {
   background: transparent;
   border: none;
   color: var(--color-red);
   cursor: pointer;
-  font-size: 0.9rem;
-}
-.remove-btn:hover {
-  text-decoration: underline;
 }
 
-/* Rodapé do Carrinho */
 .cart-footer {
   border-top: 1px solid #333;
   padding-top: 20px;
@@ -611,25 +663,61 @@ footer {
   margin-bottom: 15px;
 }
 
-/* Fundo Escuro (Overlay) */
 .cart-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 1999;
-  display: none; /* Escondido */
+  display: none;
 }
 
 .cart-overlay.open {
   display: block;
 }
 
-/* Ajuste Mobile */
-@media (max-width: 480px) {
-  .cart-sidebar {
-    width: 100%;
+/* --- FOOTER --- */
+footer {
+  background-color: #000;
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  border-top: 1px solid #222;
+}
+
+/* =========================================
+   AJUSTE ESPECÍFICO PARA COMBOS
+   ========================================= */
+
+/* Deixa o cartão do combo mais largo que o do hambúrguer normal */
+.combo-item {
+  max-width: 600px !important; /* Aumenta de 400px para 600px */
+  border: 1px solid var(--color-gold); /* Destaque extra com borda dourada */
+}
+
+/* Ajusta a imagem para ficar proporcional ao tamanho novo */
+.combo-item .menu-img {
+  height: 280px; /* Aumenta a altura da foto (antes era 200px) */
+}
+
+/* Ajuste para telas médias (Tablets/Laptops pequenos) */
+@media (min-width: 769px) {
+  /* Se estiver usando Grid, faz o combo ocupar 2 colunas para caber melhor */
+  .combo-item {
+    grid-column: span 2;
+  }
+}
+
+/* No celular, garantimos que ele não estoure a tela */
+@media (max-width: 768px) {
+  .combo-item {
+    max-width: 100% !important;
+    grid-column: auto; /* Volta ao normal no celular */
+  }
+
+  .combo-item .menu-img {
+    height: 220px; /* Altura um pouco menor no celular */
   }
 }
