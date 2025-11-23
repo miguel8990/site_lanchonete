@@ -393,7 +393,7 @@ h2.section-title::after {
   height: 200px;
   background-color: #444;
   width: 100%;
-  object-fit: cover;
+  object-fit: fill;
   display: block;
 }
 
