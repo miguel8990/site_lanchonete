@@ -405,9 +405,12 @@ h2.section-title::after {
   padding: var(--spacing-md);
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex-grow: 1;
+  justify-content: space-between;
 }
-
+.menu-info p {
+  margin-bottom: 15px;
+}
 .menu-info h3 {
   color: var(--color-gold);
   margin-bottom: var(--spacing-sm);
@@ -419,10 +422,13 @@ h2.section-title::after {
   color: var(--color-cream);
   margin-top: var(--spacing-sm);
   display: block;
+  margin-bottom: 15px;
+  margin-top: auto;
 }
 
 .menu-info button {
   margin-top: auto;
+  width: 100%;
 }
 
 /* --- SOBRE NÓS --- */
