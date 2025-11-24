@@ -92,7 +92,7 @@ export const fetchMenu = () => {
           description:
             "Pão, hambúrguer de linguiça suína, presunto, mussarela, ovo, bacon, cenoura, milho, alface, tomate.",
           price: 30.0,
-          image: "assets/no-image.png",
+          image: "assets/x-caipira.png",
         },
       ]);
     }, 800); // Simulate network delay
@@ -109,7 +109,7 @@ export const fetchCombos = () => {
           description:
             "Pão, Hambúrguer, Presunto, Ovo, Salsicha, Bacon, Creme de Leite, Alface, Tomate, Milho, Batata Palha + 250G de Batata Frita",
           price: 45.0,
-          image: "assets/combo-calopsita-fritas.jpg",
+          image: "assets/combo-calopsita.png",
         },
         {
           id: 102,

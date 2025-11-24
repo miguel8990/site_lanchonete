@@ -308,7 +308,7 @@ function initContactForm() {
       setTimeout(() => {
         submitBtn.innerHTML = originalText; // Volta o ícone e texto originais
         submitBtn.disabled = false;
-      }, 2000);
+      }, 5000);
     }
   });
 }

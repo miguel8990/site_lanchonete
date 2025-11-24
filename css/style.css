@@ -716,7 +716,7 @@ footer {
 
 /* Ajusta a imagem para ficar proporcional ao tamanho novo */
 .combo-item .menu-img {
-  height: 280px; /* Aumenta a altura da foto (antes era 200px) */
+  height: auto; /* Aumenta a altura da foto (antes era 200px) */
 }
 
 /* Ajuste para telas médias (Tablets/Laptops pequenos) */
