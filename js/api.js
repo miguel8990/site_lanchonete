@@ -12,7 +12,7 @@ export const fetchMenu = () => {
           description:
             "Pão, presunto, mussarela, ovo, requeijão, bacon, milho, alface, tomate.",
           price: 30.0,
-          image: "assets/falcao.png",
+          image: "assets/falcao.jpg",
         },
         {
           id: 2,
@@ -20,7 +20,7 @@ export const fetchMenu = () => {
           description:
             "Pão, Hambúrguer da casa, duas fatias de presunto, Mussarela, ovo, Bacon, Cenoura, Milho, Alface, Tomate.",
           price: 35.0,
-          image: "assets/aguia.png",
+          image: "assets/aguia.jpg",
         },
         {
           id: 3,
@@ -28,7 +28,7 @@ export const fetchMenu = () => {
           description:
             "Pão, hambúrguer, presunto, mussarela, ovo, salsicha, bacon, creme de leite, milho, alface, tomate.",
           price: 30.0,
-          image: "assets/calopsita.png",
+          image: "assets/calopsita.jpg",
         },
         {
           id: 4,
@@ -36,7 +36,7 @@ export const fetchMenu = () => {
           description:
             "Pão, hambúrguer, presunto, mussarela, 2 ovos, bacon, requeijão, milho, alface, tomate.",
           price: 30.0,
-          image: "assets/canario.png",
+          image: "assets/canario.jpg",
         },
         {
           id: 5,
@@ -44,7 +44,7 @@ export const fetchMenu = () => {
           description:
             "Pão, hambúrguer, presunto, mussarela, ovo, requeijão, bacon, lombo, frango, filé, salsicha, milho, tomate, alface.",
           price: 45.0,
-          image: "assets/cegonha-turbo.png",
+          image: "assets/cegonha-turbo.jpg",
         },
         {
           id: 6,
@@ -52,7 +52,7 @@ export const fetchMenu = () => {
           description:
             "Pão, hambúrguer, presunto, mussarela, ovo, bacon, milho, alface, tomate.",
           price: 25.0,
-          image: "assets/bem-te-vi.png",
+          image: "assets/bem-te-vi.jpg",
         },
         {
           id: 7,
@@ -60,7 +60,7 @@ export const fetchMenu = () => {
           description:
             "Pão, hambúrguer, presunto, mussarela, ovo, requeijão, cenoura, milho, ervilha, alface, tomate.",
           price: 26.0,
-          image: "assets/beija-flor.png",
+          image: "assets/beija-flor.jpg",
         },
         {
           id: 8,
@@ -68,7 +68,7 @@ export const fetchMenu = () => {
           description:
             "Pão, hambúrguer da casa, presunto, mussarela, ovo, bacon, cenoura, milho, alface, tomate.",
           price: 30.0,
-          image: "assets/bem-te-vi-artesanal.png",
+          image: "assets/bem-te-vi-artesanal.jpg",
         },
         {
           id: 9,
@@ -76,7 +76,7 @@ export const fetchMenu = () => {
           description:
             "Pão, 2 mussarelas, ovo, requeijão, cenoura, milho, alface, tomate, batata palha.",
           price: 18.0,
-          image: "assets/vegetariano.png",
+          image: "assets/vegetariano.jpg",
         },
         {
           id: 10,
@@ -84,7 +84,7 @@ export const fetchMenu = () => {
           description:
             "Pão, hambúrguer, 2 fatias de presunto, mussarela, ovo, bacon, cheddar, milho, alface, tomate, batata palha.",
           price: 20.0,
-          image: "assets/kids.png",
+          image: "assets/kids.jpg",
         },
         {
           id: 11,
@@ -92,7 +92,7 @@ export const fetchMenu = () => {
           description:
             "Pão, hambúrguer de linguiça suína, presunto, mussarela, ovo, bacon, cenoura, milho, alface, tomate.",
           price: 30.0,
-          image: "assets/x-caipira.png",
+          image: "assets/x-caipira.jpg",
         },
       ]);
     }, 800); // Simulate network delay
@@ -109,7 +109,7 @@ export const fetchCombos = () => {
           description:
             "Pão, Hambúrguer, Presunto, Ovo, Salsicha, Bacon, Creme de Leite, Alface, Tomate, Milho, Batata Palha + 250G de Batata Frita",
           price: 45.0,
-          image: "assets/combo-calopsita.png",
+          image: "assets/combo-calopsita.jpg",
         },
         {
           id: 102,
@@ -117,7 +117,7 @@ export const fetchCombos = () => {
           description:
             "3 BEM-TE-VI: Pão, hambúrguer, presunto, mussarela, ovo, bacon, milho, alface, tomate + 1 Cotuba 2 ",
           price: 80.0,
-          image: "assets/combo-especial.png",
+          image: "assets/combo-especial.jpg",
         },
       ]);
     }, 1000);
