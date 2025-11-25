@@ -291,6 +291,12 @@ h2.section-title::after {
   .cart-btn {
     font-size: 1.1rem;
     padding: 6px 10px;
+    margin-right: 20px; /* Empurra o hamburger para a direita */
+    margin-left: 10px; /* (Opcional) Afasta um pouco do que tiver na esquerda */
+  }
+  .nav-right {
+    gap: 5px; /* Reduz o gap padrão pois estamos usando margin agora */
+    padding-right: 5px; /* Garante que não cole na borda do celular */
   }
 }
 
