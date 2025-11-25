@@ -413,7 +413,7 @@ export const fetchCombos = () => {
           id: 102,
           name: "COMBO-ESPECIAL",
           description:
-            "3 BEM-TE-VI: Pão, hambúrguer, presunto, mussarela, ovo, bacon, milho, alface, tomate + 1 Cotuba 2 ",
+            "3 BEM-TE-VI: Pão, hambúrguer, presunto, mussarela, ovo, bacon, milho, alface, tomate + 1 Cotuba 2L ",
           price: 80.0,
           image: "assets/combo-especial.jpg",
           carnes: [],
