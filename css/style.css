@@ -271,14 +271,16 @@ h2.section-title::after {
 
 @media (max-width: 768px) {
   /* 1. Garante que o Header aproveite todo o espaço lateral */
-  body {
+
+  /*body {
     padding-bottom: 20px;
-  }
-  .combo-item .menu-img {
+  }*/
+  /*.combo-item .menu-img {
     height: 200px; /* Altura fixa controlada */
-    object-fit: cover; /* Corta o excesso sem esticar a foto */
-    width: 100%;
-  }
+  /*object-fit: cover; /* Corta o excesso sem esticar a foto */
+  /*width: 100%;
+  }*/
+
   .btn-add-item {
     white-space: nowrap;
     font-size: 0.9rem; /* Levemente menor para caber melhor */
