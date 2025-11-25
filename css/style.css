@@ -1350,7 +1350,7 @@ footer {
 }
 
 /* Opcional: Se quiser que os combos sejam realmente um carrossel de deslizar no celular */
-@media (max-width: 600px) {
+/*@media (max-width: 600px) {
   .carousel {
     display: flex;
     overflow-x: auto;
@@ -1362,4 +1362,5 @@ footer {
     min-width: 85vw;
     scroll-snap-align: center;
   }
-}
+} 
+*/
