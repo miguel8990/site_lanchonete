@@ -812,7 +812,7 @@ footer {
   }
 
   .combo-item .menu-img {
-    height: 220px; /* Altura um pouco menor no celular */
+    height: auto; /* Altura um pouco menor no celular */
   }
 }
 /* --- FOOTER COMPLETO --- */
