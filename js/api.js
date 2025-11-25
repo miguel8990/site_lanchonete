@@ -10,7 +10,7 @@ export const fetchMenu = () => {
           id: 1,
           name: "FALCÃO",
           description:
-            "Pão, presunto, mussarela, ovo, requeijão, bacon, milho, alface, tomate.",
+            "Pão, presunto, mussarela, ovo, requeijão, bacon, milho, alface, tomate. (Opções de Carnes: Frango, Lombo e Filé)",
           price: 30.0,
           image: "assets/falcao.jpg",
           carnes: [
