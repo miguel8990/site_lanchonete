@@ -13,6 +13,18 @@ export const fetchMenu = () => {
             "Pão, presunto, mussarela, ovo, requeijão, bacon, milho, alface, tomate.",
           price: 30.0,
           image: "assets/falcao.jpg",
+          carnes: [
+            "Carne Bovina (Ao Ponto)",
+            "Carne Bovina (Bem Passada)",
+            "Frango Crocante",
+            "Burger Vegetariano",
+          ],
+          adicionais: [
+            { nome: "Bacon Extra", price: 4.0 },
+            { nome: "Queijo Extra", price: 3.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Maionese Extra", price: 2.5 },
+          ],
         },
         {
           id: 2,
@@ -107,7 +119,7 @@ export const fetchCombos = () => {
           id: 101,
           name: "COMBO CALOPSITA + BATATA FRITA",
           description:
-            "Pão, Hambúrguer, Presunto, Ovo, Salsicha, Bacon, Creme de Leite, Alface, Tomate, Milho, Batata Palha + 250G de Batata Frita",
+            "Pão, Hambúrguer, Presunto, Ovo, Salsicha, Bacon, Creme de Leite, Alface, Tomate, Milho + 250G de Batata Frita",
           price: 45.0,
           image: "assets/combo-calopsita.jpg",
         },

@@ -425,6 +425,52 @@
       <div id="cart-items" class="cart-items-container">
         <p class="empty-msg">Seu carrinho está vazio 🍔</p>
       </div>
+      <div id="modal-personalizacao" class="modal-overlay">
+        <div class="modal-content">
+          <div class="modal-header">
+            <img id="modal-img" src="" alt="Lanche" />
+            <button class="close-modal" onclick="fecharModal()">&times;</button>
+          </div>
+
+          <div class="modal-body">
+            <h3 id="modal-title">Nome do Lanche</h3>
+            <p id="modal-desc">Descrição do lanche...</p>
+
+            <div id="modal-carnes-section">
+              <h4 class="modal-section-title">
+                Escolha sua Carne <span class="required-tag">Obrigatório</span>
+              </h4>
+              <div id="lista-carnes" class="options-list"></div>
+            </div>
+
+            <div id="modal-adicionais-section">
+              <h4 class="modal-section-title">
+                Turbine seu lanche <span class="optional-tag">Opcional</span>
+              </h4>
+              <div id="lista-adicionais" class="options-list"></div>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px">
+              <label for="modal-obs">Observações do Item:</label>
+              <textarea
+                id="modal-obs"
+                rows="2"
+                placeholder="Ex: Tirar cebola..."
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <div class="price-box">
+              <span>Total:</span>
+              <span id="modal-total">R$ 0,00</span>
+            </div>
+            <button class="btn-primary" onclick="adicionarItemDoModal()">
+              Adicionar ao Pedido
+            </button>
+          </div>
+        </div>
+      </div>
 
       <div class="cart-footer">
         <div class="cart-total">

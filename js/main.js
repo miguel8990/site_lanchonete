@@ -3,6 +3,8 @@ import { fetchMenu, fetchCombos, submitOrder } from "./api.js";
 
 // 1. Estado Global (Carrinho)
 let carrinho = [];
+let menuGlobal = []; // Para guardar os dados do cardápio e acessar no modal
+let itemEmPersonalizacao = null; // O item que está sendo montado agora
 
 // 2. Inicialização
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,17 +19,31 @@ document.addEventListener("DOMContentLoaded", () => {
   window.toggleCart = toggleCart;
   window.removerItem = removerItem;
   window.finalizarPedido = finalizarPedido;
+  window.alterarQuantidade = alterarQuantidade;
+  window.adicionarComQuantidade = adicionarComQuantidade;
 });
 
 // 3. Lógica do Carrinho
+// 1. Nova função de Adicionar (Agrupa itens iguais)
 function adicionarAoCarrinho(nome, preco) {
-  carrinho.push({ nome, preco });
-  // Atualiza a tela
+  // Verifica se já existe um item com esse nome no carrinho
+  const itemExistente = carrinho.find((item) => item.nome === nome);
+
+  if (itemExistente) {
+    // Se já existe, só aumenta a quantidade
+    itemExistente.quantity += 1;
+  } else {
+    // Se não existe, adiciona com quantidade 1
+    carrinho.push({
+      nome: nome,
+      preco: preco,
+      quantity: 1,
+    });
+  }
+
   atualizarCarrinhoUI();
   atualizarBotoesMenu();
-
-  // Abre o carrinho automaticamente para o usuário ver
-  //toggleCart(false);
+  animarCarrinho(); // Mantém sua animação
 }
 function removerItem(index) {
   // Remove o item pelo índice
@@ -40,38 +56,57 @@ function atualizarCarrinhoUI() {
   const contador = document.getElementById("cart-count");
   const totalSpan = document.getElementById("cart-total-price");
 
-  // 1. Atualiza bolinha vermelha
-  contador.innerText = carrinho.length;
+  // Limpa o container
+  container.innerHTML = "";
 
-  // 2. Calcula Total
   let total = 0;
-
-  // 3. Desenha a lista
-  container.innerHTML = ""; // Limpa antes de redesenhar
+  let totalItens = 0;
 
   if (carrinho.length === 0) {
     container.innerHTML =
       '<p class="empty-msg" style="text-align:center; color:#777; margin-top:20px;">Seu carrinho está vazio 🍔</p>';
   } else {
-    carrinho.forEach((item, index) => {
-      total += item.price || item.preco; // Garante compatibilidade de nome
+    carrinho.forEach((item) => {
+      // Calcula total considerando a quantidade
+      total += item.preco * item.quantity;
+      totalItens += item.quantity;
 
       const itemDiv = document.createElement("div");
       itemDiv.classList.add("cart-item-row");
       itemDiv.innerHTML = `
-                <div class="cart-item-info">
-                    <h4>${item.nome}</h4>
-                    <p>R$ ${item.preco.toFixed(2).replace(".", ",")}</p>
+                <div class="cart-item-info" style="flex: 1;">
+                    <h4 style="margin:0; color:white;">${item.nome}</h4>
+                    <p style="margin:0; color:var(--color-gold); font-size:0.9rem;">
+                        R$ ${(item.preco * item.quantity)
+                          .toFixed(2)
+                          .replace(".", ",")}
+                    </p>
                 </div>
-                <button class="remove-btn" onclick="removerItem(${index})">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
+                
+                <div class="cart-qty-controls">
+                    <button onclick="alterarQuantidadeCarrinho('${
+                      item.nome
+                    }', -1)">
+                        ${
+                          item.quantity === 1
+                            ? '<i class="fa-solid fa-trash"></i>'
+                            : "-"
+                        }
+                    </button>
+                    
+                    <span>${item.quantity}</span>
+                    
+                    <button onclick="alterarQuantidadeCarrinho('${
+                      item.nome
+                    }', 1)">+</button>
+                </div>
             `;
       container.appendChild(itemDiv);
     });
   }
 
-  // 4. Atualiza texto do total
+  // Atualiza totais
+  contador.innerText = totalItens;
   totalSpan.innerText = `R$ ${total.toFixed(2).replace(".", ",")}`;
 }
 
@@ -118,6 +153,7 @@ async function initMenu() {
 
   try {
     const menuItems = await fetchMenu();
+    menuGlobal = menuItems; // SALVA AQUI <---
     menuGrid.innerHTML = menuItems
       .map((item) => createMenuItemCard(item))
       .join("");
@@ -151,14 +187,18 @@ async function initCombos() {
       '<p class="error">Ops! Não conseguimos carregar os combos.</p>';
   }
 }
-
+function getSafeId(name) {
+  return name.replace(/[^a-zA-Z0-9]/g, "_");
+}
 // 5. Templates HTML
 function createMenuItemCard(item) {
+  const safeId = getSafeId(item.name);
+
   return `
         <div class="menu-item">
             <img src="${item.image || "assets/burger_classic.png"}" alt="${
     item.name
-  }" class="menu-img">
+  }" class="menu-img" loading="lazy">
             <div class="menu-info">
                 <h3>${item.name}</h3>
                 <p>${item.description}</p>
@@ -166,13 +206,16 @@ function createMenuItemCard(item) {
                   .toFixed(2)
                   .replace(".", ",")}</span>
                 
+                <div class="quantity-controls">
+                    <button class="qty-btn" onclick="alterarQuantidade('${safeId}', -1)">-</button>
+                    <span id="qty-${safeId}" class="qty-display">1</span>
+                    <button class="qty-btn" onclick="alterarQuantidade('${safeId}', 1)">+</button>
+                </div>
+
                 <button class="btn-outline btn-add-item" 
-                    data-name="${item.name}"
-                    style="margin-top: 1rem; width: 100%" 
-                    onclick="window.adicionarAoCarrinho('${item.name}', ${
-    item.price
-  })">
-                    Adicionar
+                  data-name="${item.name}"
+                  onclick="verificarOpcoes('${item.id}', '${safeId}')">
+                      Adicionar
                 </button>
             </div>
         </div>
@@ -180,11 +223,13 @@ function createMenuItemCard(item) {
 }
 
 function createComboCard(combo) {
+  const safeId = getSafeId(combo.name);
+
   return `
         <div class="menu-item combo-item">
              <img src="${combo.image || "assets/burger_classic.png"}" alt="${
     combo.name
-  }" class="menu-img">
+  }" class="menu-img" loading="lazy">
             <div class="menu-info">
                 <h3 class="text-gold">${combo.name}</h3>
                 <p>${combo.description}</p>
@@ -192,12 +237,17 @@ function createComboCard(combo) {
                   .toFixed(2)
                   .replace(".", ",")}</span>
                 
+                <div class="quantity-controls">
+                    <button class="qty-btn-combo" onclick="alterarQuantidade('${safeId}', -1)">-</button>
+                    <span id="qty-${safeId}" class="qty-display">1</span>
+                    <button class="qty-btn-combo" onclick="alterarQuantidade('${safeId}', 1)">+</button>
+                </div>
+
                 <button class="btn-primary btn-add-item" 
                     data-name="${combo.name}"
-                    style="margin-top: 1rem; width: 100%" 
-                    onclick="window.adicionarAoCarrinho('${combo.name}', ${
+                    onclick="adicionarComQuantidade('${combo.name}', ${
     combo.price
-  })">
+  }, '${safeId}')">
                     Eu Quero!
                 </button>
             </div>
@@ -266,8 +316,11 @@ function initContactForm() {
     if (carrinho.length > 0) {
       resumoTexto = carrinho
         .map((item) => {
-          total += item.preco;
-          return `- ${item.nome} (R$ ${item.preco
+          // Calcula o subtotal do item (Preço x Quantidade)
+          const subtotal = item.preco * item.quantity;
+
+          // Texto: "2x Smash Burger (R$ 40,00)"
+          return `${item.quantity}x ${item.nome} (R$ ${subtotal
             .toFixed(2)
             .replace(".", ",")})`;
         })
@@ -353,3 +406,251 @@ function initScrollEffects() {
     });
   });
 }
+
+function alterarQuantidade(id, mudanca) {
+  const display = document.getElementById(`qty-${id}`);
+  let valorAtual = parseInt(display.innerText);
+
+  valorAtual += mudanca;
+
+  // Não deixa baixar de 1
+  if (valorAtual < 1) valorAtual = 1;
+
+  display.innerText = valorAtual;
+}
+
+// 2. Função que adiciona ao carrinho baseado no número escolhido
+function adicionarComQuantidade(nome, preco, id) {
+  const display = document.getElementById(`qty-${id}`);
+  const quantidadeInput = parseInt(display.innerText);
+
+  const itemExistente = carrinho.find((item) => item.nome === nome);
+
+  if (itemExistente) {
+    itemExistente.quantity += quantidadeInput;
+  } else {
+    carrinho.push({
+      nome: nome,
+      preco: preco,
+      quantity: quantidadeInput,
+    });
+  }
+
+  atualizarCarrinhoUI();
+  atualizarBotoesMenu();
+  animarCarrinho();
+
+  display.innerText = "1"; // Reseta o display do menu
+}
+
+function animarCarrinho() {
+  const btnCarrinho = document.getElementById("cart-btn");
+
+  // Truque para reiniciar a animação se o usuário clicar rápido
+  btnCarrinho.classList.remove("cart-bump");
+  void btnCarrinho.offsetWidth; // Força o navegador a "recalcular" (magic trick)
+
+  // Adiciona a classe que tem a animação
+  btnCarrinho.classList.add("cart-bump");
+
+  // (Opcional) Remove a classe depois que acabar
+  setTimeout(() => {
+    btnCarrinho.classList.remove("cart-bump");
+  }, 1000); // 400ms é o tempo da animação no CSS
+}
+
+// 3. NOVA FUNÇÃO: Controla o + e - DENTRO do carrinho
+window.alterarQuantidadeCarrinho = function (nome, mudanca) {
+  const itemExistente = carrinho.find((item) => item.nome === nome);
+
+  if (itemExistente) {
+    itemExistente.quantity += mudanca;
+
+    // Se a quantidade for para 0 ou menos, remove o item
+    if (itemExistente.quantity <= 0) {
+      // Filtra o array removendo esse item
+      carrinho = carrinho.filter((item) => item.nome !== nome);
+    }
+  }
+
+  atualizarCarrinhoUI();
+  atualizarBotoesMenu();
+};
+
+// --- SISTEMA DE MODAL DE PERSONALIZAÇÃO ---
+
+window.verificarOpcoes = function (itemId, qtdId) {
+  // Acha o produto na lista global pelo ID (converter para número se precisar)
+  const produto = menuGlobal.find((p) => p.id == itemId);
+
+  // Pega a quantidade que o usuário marcou no card
+  const qtdDisplay = document.getElementById(`qty-${qtdId}`);
+  const quantidade = parseInt(qtdDisplay.innerText);
+
+  // Se tiver opções de carnes ou adicionais, ABRE O MODAL
+  if (
+    (produto.carnes && produto.carnes.length > 0) ||
+    (produto.adicionais && produto.adicionais.length > 0)
+  ) {
+    abrirModal(produto, quantidade);
+  } else {
+    // Se for lanche simples, manda direto pro carrinho (lógica antiga)
+    adicionarComQuantidade(produto.name, produto.price, qtdId);
+  }
+};
+
+function abrirModal(produto, quantidadeInicial) {
+  const modal = document.getElementById("modal-personalizacao");
+  itemEmPersonalizacao = {
+    ...produto,
+    quantidadeNoModal: quantidadeInicial,
+    adicionaisSelecionados: [],
+    carneSelecionada: null,
+    precoTotalAtual: produto.price,
+  };
+
+  // Preenche os textos
+  document.getElementById("modal-img").src =
+    produto.image || "assets/burger_classic.png";
+  document.getElementById("modal-title").innerText = produto.name;
+  document.getElementById("modal-desc").innerText = produto.description;
+  document.getElementById("modal-obs").value = ""; // Limpa obs
+
+  // --- GERA AS CARNES (Radio) ---
+  const divCarnes = document.getElementById("lista-carnes");
+  divCarnes.innerHTML = "";
+  if (produto.carnes && produto.carnes.length > 0) {
+    document.getElementById("modal-carnes-section").style.display = "block";
+    produto.carnes.forEach((carne, index) => {
+      // Seleciona a primeira carne por padrão
+      const checked = index === 0 ? "checked" : "";
+      if (index === 0) itemEmPersonalizacao.carneSelecionada = carne;
+
+      divCarnes.innerHTML += `
+                <label class="option-row">
+                    <input type="radio" name="carne" value="${carne}" ${checked} onchange="atualizarSelecaoModal()">
+                    <div class="option-info"><span>${carne}</span></div>
+                </label>
+            `;
+    });
+  } else {
+    document.getElementById("modal-carnes-section").style.display = "none";
+  }
+
+  // --- GERA OS ADICIONAIS (Checkbox) ---
+  const divAdicionais = document.getElementById("lista-adicionais");
+  divAdicionais.innerHTML = "";
+  if (produto.adicionais && produto.adicionais.length > 0) {
+    document.getElementById("modal-adicionais-section").style.display = "block";
+    produto.adicionais.forEach((add, index) => {
+      divAdicionais.innerHTML += `
+                <label class="option-row">
+                    <input type="checkbox" value="${index}" onchange="atualizarSelecaoModal()">
+                    <div class="option-info">
+                        <span>${add.nome}</span>
+                        <span class="option-price">+ R$ ${add.price
+                          .toFixed(2)
+                          .replace(".", ",")}</span>
+                    </div>
+                </label>
+            `;
+    });
+  } else {
+    document.getElementById("modal-adicionais-section").style.display = "none";
+  }
+
+  atualizarPrecoModal();
+  modal.classList.add("active");
+}
+
+window.fecharModal = function () {
+  document.getElementById("modal-personalizacao").classList.remove("active");
+};
+
+window.atualizarSelecaoModal = function () {
+  // 1. Pega Carne
+  const carneInput = document.querySelector('input[name="carne"]:checked');
+  if (carneInput) itemEmPersonalizacao.carneSelecionada = carneInput.value;
+
+  // 2. Pega Adicionais
+  const checks = document.querySelectorAll("#lista-adicionais input:checked");
+  itemEmPersonalizacao.adicionaisSelecionados = []; // Reseta
+
+  checks.forEach((box) => {
+    const index = box.value;
+    // Busca o objeto original do adicional para pegar nome e preço
+    const addObj = itemEmPersonalizacao.adicionais[index];
+    itemEmPersonalizacao.adicionaisSelecionados.push(addObj);
+  });
+
+  atualizarPrecoModal();
+};
+
+function atualizarPrecoModal() {
+  let precoBase = itemEmPersonalizacao.price;
+
+  // Soma adicionais
+  itemEmPersonalizacao.adicionaisSelecionados.forEach((add) => {
+    precoBase += add.price;
+  });
+
+  // Atualiza a variável global do item
+  itemEmPersonalizacao.precoTotalAtual = precoBase;
+
+  // Atualiza na tela (Multiplicado pela quantidade inicial que ele escolheu no card)
+  const totalFinal = precoBase * itemEmPersonalizacao.quantidadeNoModal;
+  document.getElementById("modal-total").innerText = `R$ ${totalFinal
+    .toFixed(2)
+    .replace(".", ",")}`;
+}
+
+window.adicionarItemDoModal = function () {
+  // Validação (Se carne for obrigatória e não tiver selecionada)
+  if (
+    itemEmPersonalizacao.carnes &&
+    itemEmPersonalizacao.carnes.length > 0 &&
+    !itemEmPersonalizacao.carneSelecionada
+  ) {
+    alert("Por favor, escolha uma carne.");
+    return;
+  }
+
+  const obs = document.getElementById("modal-obs").value;
+
+  // Constrói o nome composto para o carrinho
+  // Ex: "Cegonha Clássico (Bovina) + Bacon + Ovo"
+  let nomeFinal = itemEmPersonalizacao.name;
+  if (itemEmPersonalizacao.carneSelecionada) {
+    nomeFinal += ` (${itemEmPersonalizacao.carneSelecionada})`;
+  }
+
+  // Adiciona os extras no nome ou cria uma propriedade separada
+  // Vamos criar um "item de carrinho" completo
+  const itemParaCarrinho = {
+    nome: nomeFinal,
+    preco: itemEmPersonalizacao.precoTotalAtual, // Preço unitário já com extras
+    obs: obs,
+    adicionais: itemEmPersonalizacao.adicionaisSelecionados
+      .map((a) => a.nome)
+      .join(", "),
+  };
+
+  // Adiciona a quantidade selecionada
+  for (let i = 0; i < itemEmPersonalizacao.quantidadeNoModal; i++) {
+    // Aqui precisamos adaptar sua função adicionarAoCarrinho para aceitar esse objeto customizado
+    // Ou simplesmente empurrar direto pro array e chamar a atualização
+
+    // Lógica simplificada para integrar com seu sistema atual:
+    // Vamos gerar um nome único para agrupar no carrinho
+    let nomeIdentificador = itemParaCarrinho.nome;
+    if (itemParaCarrinho.adicionais)
+      nomeIdentificador += ` + ${itemParaCarrinho.adicionais}`;
+    if (obs) nomeIdentificador += ` [Obs: ${obs}]`;
+
+    adicionarAoCarrinho(nomeIdentificador, itemParaCarrinho.preco);
+  }
+
+  fecharModal();
+
+  // Reseta o contador do card lá atrás (opcional, exige achar o ID de novo)
+};
