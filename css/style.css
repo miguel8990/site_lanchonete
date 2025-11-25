@@ -413,6 +413,7 @@ h2.section-title::after {
   width: 80%; /* Ocupa 80% da largura do celular */
   max-width: 320px; /* Não deixa ficar gigante no mobile */
   height: auto;
+  aspect-ratio: 1 / 1;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
   animation: flutuar 3s ease-in-out infinite;
 }
@@ -1366,3 +1367,14 @@ footer {
   }
 } 
 */
+/* --- PREVENÇÃO DE CLS (Layout Shift) --- */
+
+/* Reserva espaço para o cardápio enquanto carrega */
+#menu-grid {
+  min-height: 600px; /* Altura estimada de uns 2 ou 3 lanches */
+}
+
+/* Reserva espaço para os combos */
+.carousel {
+  min-height: 400px;
+}
