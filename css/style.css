@@ -303,12 +303,28 @@ h2.section-title::after {
   /* 4. A Logo (Segurança) */
   /* Se a tela for minúscula, a logo diminui, mas o menu fica fixo */
   .container-titulo {
+    /* Cria uma barreira invisível na direita para não encostar no carrinho */
+    margin-right: 10px;
+
+    /* Permite que a área da logo encolha se faltar espaço */
     flex-shrink: 1;
-    overflow: hidden; /* Garante que não vaze */
+
+    /* Garante que o link e a imagem fiquem alinhados */
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Corta o que passar do limite em telas muito pequenas */
   }
 
+  /* 2. DIMINUIR A LOGO (IMAGEM) */
   .logo img {
-    max-width: 80px; /* Garante logo contida */
+    width: 60px; /* Reduzimos de 90px para 60px no celular */
+    height: auto;
+  }
+
+  /* 3. DIMINUIR O TEXTO "CEGONHA LANCHES" */
+  .logo {
+    font-size: 1.1rem; /* Reduzimos de 1.5rem para 1.1rem */
+    white-space: nowrap; /* Impede que o texto quebre de linha */
   }
 }
 
