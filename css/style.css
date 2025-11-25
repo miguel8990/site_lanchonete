@@ -271,6 +271,19 @@ h2.section-title::after {
 
 @media (max-width: 768px) {
   /* 1. Garante que o Header aproveite todo o espaço lateral */
+  body {
+    padding-bottom: 20px;
+  }
+  .combo-item .menu-img {
+    height: 200px; /* Altura fixa controlada */
+    object-fit: cover; /* Corta o excesso sem esticar a foto */
+    width: 100%;
+  }
+  .btn-add-item {
+    white-space: nowrap;
+    font-size: 0.9rem; /* Levemente menor para caber melhor */
+  }
+
   #main-header .container {
     padding: 0 15px; /* Reduzi de 20px para 15px para ganhar espaço */
     justify-content: space-between; /* Garante Logo na esq, Menu na dir */
@@ -1284,4 +1297,69 @@ footer {
 /* Efeito ao clicar (Active) */
 .close-cart:active {
   transform: scale(0.9); /* Encolhe levemente ao clicar */
+}
+
+/* --- VALIDAÇÃO DE FORMULÁRIO --- */
+.input-error {
+  border-color: #ff4444 !important; /* Borda vermelha */
+  animation: shake 0.3s; /* Treme o campo */
+}
+
+.error-text {
+  color: #ff4444;
+  font-size: 0.8rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Animação de tremer */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/* --- CORREÇÃO VISUAL DOS COMBOS --- */
+.carousel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+
+/* No PC, mostra em grade (igual ao menu) */
+@media (min-width: 600px) {
+  .carousel {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(350px, 1fr)
+    ); /* Um pouco mais largo que o menu normal */
+  }
+}
+
+/* Opcional: Se quiser que os combos sejam realmente um carrossel de deslizar no celular */
+@media (max-width: 600px) {
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 20px;
+  }
+
+  .carousel .menu-item {
+    min-width: 85vw;
+    scroll-snap-align: center;
+  }
 }

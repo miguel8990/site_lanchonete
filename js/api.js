@@ -14,16 +14,31 @@ export const fetchMenu = () => {
           price: 30.0,
           image: "assets/falcao.jpg",
           carnes: [
-            "Carne Bovina (Ao Ponto)",
-            "Carne Bovina (Bem Passada)",
-            "Frango Crocante",
-            "Burger Vegetariano",
+            { nome: "Frango", price: 0 }, // Sem custo extra
+            { nome: "Lombo", price: 0 },
+            { nome: "Filé", price: 0 },
           ],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
           adicionais: [
-            { nome: "Bacon Extra", price: 4.0 },
-            { nome: "Queijo Extra", price: 3.0 },
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
             { nome: "Ovo", price: 2.0 },
-            { nome: "Maionese Extra", price: 2.5 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
           ],
         },
         {
@@ -33,6 +48,31 @@ export const fetchMenu = () => {
             "Pão, Hambúrguer da casa, duas fatias de presunto, Mussarela, ovo, Bacon, Cenoura, Milho, Alface, Tomate.",
           price: 35.0,
           image: "assets/aguia.jpg",
+          carnes: [
+            { nome: "Hambúrguer", price: 0 }, // Sem custo extra
+          ],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
         {
           id: 3,
@@ -41,6 +81,31 @@ export const fetchMenu = () => {
             "Pão, hambúrguer, presunto, mussarela, ovo, salsicha, bacon, creme de leite, milho, alface, tomate.",
           price: 30.0,
           image: "assets/calopsita.jpg",
+          carnes: [
+            { nome: "Hambúrguer", price: 0 }, // Sem custo extra
+          ],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
         {
           id: 4,
@@ -49,6 +114,31 @@ export const fetchMenu = () => {
             "Pão, hambúrguer, presunto, mussarela, 2 ovos, bacon, requeijão, milho, alface, tomate.",
           price: 30.0,
           image: "assets/canario.jpg",
+          carnes: [
+            { nome: "Hambúrguer", price: 0 }, // Sem custo extra
+          ],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
         {
           id: 5,
@@ -57,6 +147,31 @@ export const fetchMenu = () => {
             "Pão, hambúrguer, presunto, mussarela, ovo, requeijão, bacon, lombo, frango, filé, salsicha, milho, tomate, alface.",
           price: 45.0,
           image: "assets/cegonha-turbo.jpg",
+          carnes: [
+            { nome: "Hambúrguer", price: 0 }, // Sem custo extra
+          ],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
         {
           id: 6,
@@ -65,6 +180,31 @@ export const fetchMenu = () => {
             "Pão, hambúrguer, presunto, mussarela, ovo, bacon, milho, alface, tomate.",
           price: 25.0,
           image: "assets/bem-te-vi.jpg",
+          carnes: [
+            { nome: "Hambúrguer", price: 0 }, // Sem custo extra
+          ],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
         {
           id: 7,
@@ -73,14 +213,64 @@ export const fetchMenu = () => {
             "Pão, hambúrguer, presunto, mussarela, ovo, requeijão, cenoura, milho, ervilha, alface, tomate.",
           price: 26.0,
           image: "assets/beija-flor.jpg",
+          carnes: [
+            { nome: "Hambúrguer", price: 0 }, // Sem custo extra
+          ],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
         {
           id: 8,
           name: "BEM-TE-VI-ARTESANAL",
           description:
-            "Pão, hambúrguer da casa, presunto, mussarela, ovo, bacon, cenoura, milho, alface, tomate.",
+            "Pão, Hambúrguer da casa, presunto, mussarela, ovo, bacon, cenoura, milho, alface, tomate.",
           price: 30.0,
           image: "assets/bem-te-vi-artesanal.jpg",
+          carnes: [
+            { nome: "Hambúrguer da casa", price: 0 }, // Sem custo extra
+          ],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
         {
           id: 9,
@@ -89,6 +279,29 @@ export const fetchMenu = () => {
             "Pão, 2 mussarelas, ovo, requeijão, cenoura, milho, alface, tomate, batata palha.",
           price: 18.0,
           image: "assets/vegetariano.jpg",
+          carnes: [],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
         {
           id: 10,
@@ -97,6 +310,31 @@ export const fetchMenu = () => {
             "Pão, hambúrguer, 2 fatias de presunto, mussarela, ovo, bacon, cheddar, milho, alface, tomate, batata palha.",
           price: 20.0,
           image: "assets/kids.jpg",
+          carnes: [
+            { nome: "Hambúrguer", price: 0 }, // Sem custo extra
+          ],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
         {
           id: 11,
@@ -105,6 +343,31 @@ export const fetchMenu = () => {
             "Pão, hambúrguer de linguiça suína, presunto, mussarela, ovo, bacon, cenoura, milho, alface, tomate.",
           price: 30.0,
           image: "assets/x-caipira.jpg",
+          carnes: [
+            { nome: "Hambúrguer de linguiça suína", price: 0 }, // Sem custo extra
+          ],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
       ]);
     }, 800); // Simulate network delay
@@ -122,6 +385,29 @@ export const fetchCombos = () => {
             "Pão, Hambúrguer, Presunto, Ovo, Salsicha, Bacon, Creme de Leite, Alface, Tomate, Milho + 250G de Batata Frita",
           price: 45.0,
           image: "assets/combo-calopsita.jpg",
+          carnes: [],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
         {
           id: 102,
@@ -130,6 +416,29 @@ export const fetchCombos = () => {
             "3 BEM-TE-VI: Pão, hambúrguer, presunto, mussarela, ovo, bacon, milho, alface, tomate + 1 Cotuba 2 ",
           price: 80.0,
           image: "assets/combo-especial.jpg",
+          carnes: [],
+
+          // --- MUDANÇA 2: Nova seção de Acompanhamentos ---
+          acompanhamentos: [
+            { nome: "Porção de batata porção inteira", price: 30.0 },
+            { nome: "Porção de batata porção 1/2", price: 20.0 },
+            { nome: "Bacon e cheddar porção inteira", price: 40.0 },
+            { nome: "Bacon e cheddar porção 1/2", price: 30.0 },
+            { nome: "Calabresa porção inteira", price: 40.0 },
+            { nome: "Calabresa porção 1/2", price: 25.0 },
+          ],
+
+          // Adicionais (Turbine seu lanche) continuam iguais
+          adicionais: [
+            { nome: "Hambúrguer", price: 2.5 },
+            { nome: "Hambúrguer Artesanal", price: 5.0 },
+            { nome: "Mussarela", price: 3.0 },
+            { nome: "Bacon", price: 3.0 },
+            { nome: "Salsicha", price: 2.0 },
+            { nome: "Ovo", price: 2.0 },
+            { nome: "Requeijão ou cheddar", price: 2.0 },
+            { nome: "Batata Palha", price: 3.0 },
+          ],
         },
       ]);
     }, 1000);
