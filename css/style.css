@@ -270,33 +270,45 @@ h2.section-title::after {
 }
 
 @media (max-width: 768px) {
-  /* No celular, queremos o Carrinho e o Hamburger juntos na direita */
+  /* 1. Garante que o Header aproveite todo o espaço lateral */
+  #main-header .container {
+    padding: 0 15px; /* Reduzi de 20px para 15px para ganhar espaço */
+    justify-content: space-between; /* Garante Logo na esq, Menu na dir */
+  }
+
+  /* 2. Controla o grupo da direita (Carrinho + Hamburger) */
   .nav-right {
-    gap: 15px; /* Um pouco mais perto no celular */
+    display: flex;
+    align-items: center;
+
+    /* O SEGREDO: Use GAP em vez de margin. 
+           15px é espaço suficiente entre o carrinho e o menu */
+    gap: 15px;
+
+    padding-right: 0; /* Remove padding extra que empurra pra fora */
   }
 
-  /* O Carrinho fica visível, mas os links somem */
-  .nav-links {
-    display: none; /* (O JS muda isso para flex quando abre o menu) */
-
-    /* Reafirmando a posição do menu gaveta */
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    /* ... resto das configs do menu gaveta ... */
-  }
-
-  /* Pequeno ajuste para o carrinho não ficar gigante no mobile */
+  /* 3. O Carrinho */
   .cart-btn {
     font-size: 1.1rem;
     padding: 6px 10px;
-    margin-right: 20px; /* Empurra o hamburger para a direita */
-    margin-left: 10px; /* (Opcional) Afasta um pouco do que tiver na esquerda */
+
+    /* ZERAMOS AS MARGENS. Deixe o 'gap' do pai cuidar do espaço */
+    margin: 0;
+
+    /* Impede que o carrinho seja esmagado se a tela for muito pequena */
+    flex-shrink: 0;
   }
-  .nav-right {
-    gap: 5px; /* Reduz o gap padrão pois estamos usando margin agora */
-    padding-right: 5px; /* Garante que não cole na borda do celular */
+
+  /* 4. A Logo (Segurança) */
+  /* Se a tela for minúscula, a logo diminui, mas o menu fica fixo */
+  .container-titulo {
+    flex-shrink: 1;
+    overflow: hidden; /* Garante que não vaze */
+  }
+
+  .logo img {
+    max-width: 80px; /* Garante logo contida */
   }
 }
 
