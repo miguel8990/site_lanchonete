@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm();
   initMobileMenu();
   initScrollEffects();
+  initTracking();
 
   // Fecha o modal se clicar no fundo escuro
   const modalOverlay = document.getElementById("modal-personalizacao");
@@ -404,6 +405,12 @@ function initContactForm() {
     };
 
     try {
+      if (window.va) {
+        window.va("event", {
+          name: "Pedido Realizado",
+          data: { valor: total.toFixed(2) },
+        });
+      }
       await submitOrder(dadosCompletos);
       carrinho = [];
       atualizarCarrinhoUI();
@@ -611,6 +618,46 @@ function gerarListaCheckbox(lista, divId, sectionId, tipo) {
     section.style.display = "none";
   }
 }
+
+// Função para rastrear cliques externos
+function initTracking() {
+  // 1. Rastrear Instagram
+  const instaBtn = document.getElementById("insta");
+  if (instaBtn) {
+    instaBtn.addEventListener("click", () => {
+      // Envia o evento 'Click Instagram' para a Vercel
+      window.va && window.va("event", { name: "Click Instagram" });
+    });
+  }
+  const submitPedido = document.getElementById("btn-submit-pedido");
+  if (submitPedido) {
+    submitPedido.addEventListener("click", () => {
+      // Envia o evento 'Click finalizar pedido' para a Vercel
+      window.va && window.va("event", { name: "Click Para finalizar pedido" });
+    });
+  }
+
+  // 2. Rastrear WhatsApp (Rodapé)
+  const faceBtn = document.getElementById("face"); // Se tiver facebook
+  if (faceBtn) {
+    faceBtn.addEventListener("click", () => {
+      window.va && window.va("event", { name: "Click Facebook" });
+    });
+  }
+
+  const waBtn = document.getElementById("wa"); // Botão do rodapé
+  if (waBtn) {
+    waBtn.addEventListener("click", () => {
+      window.va && window.va("event", { name: "Click WhatsApp Footer" });
+    });
+  }
+}
+
+// ADICIONE A CHAMADA DESSA FUNÇÃO NO INÍCIO DO ARQUIVO:
+document.addEventListener("DOMContentLoaded", () => {
+  // ... outras inits ...
+  initTracking(); // <--- ADICIONE ISTO
+});
 
 function atualizarSelecaoModal() {
   const carneIndex = document.querySelector('input[name="carne"]:checked');
