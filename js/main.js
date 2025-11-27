@@ -805,40 +805,52 @@ function adicionarItemDoModal() {
 }
 
 // --- SISTEMA DE HORÁRIO DE FUNCIONAMENTO ---
+// --- SISTEMA DE HORÁRIO DE FUNCIONAMENTO (COM MINUTOS) ---
 function initHorarioFuncionamento() {
   const statusBox = document.getElementById("status-funcionamento");
   const statusText = statusBox.querySelector(".status-text");
 
-  // CONFIGURAÇÃO DOS HORÁRIOS (Formato 24h)
-  const HORA_ABERTURA = 18; // 18:00
-  const HORA_FECHAMENTO = 22; // 22:59
-  // Dias que NÃO abre (0 = Domingo, 1 = Segunda, ... 6 = Sábado)
-  const DIAS_FECHADOS = []; // Ex: [1] para fechar segunda-feira
+  // CONFIGURAÇÃO DOS HORÁRIOS
+  const ABRE_HORA = 18;
+  const ABRE_MIN = 30; // 18:30
+
+  const FECHA_HORA = 22;
+  const FECHA_MIN = 30; // 22:30
+
+  // Dias que NÃO abre (0=Domingo, 1=Segunda ... 6=Sábado)
+  const DIAS_FECHADOS = [0];
 
   const agora = new Date();
   const horaAtual = agora.getHours();
+  const minAtual = agora.getMinutes();
   const diaSemana = agora.getDay();
+
+  // Truque: Converter tudo para "minutos totais do dia" para facilitar a conta
+  const minutosAtuais = horaAtual * 60 + minAtual;
+  const minutosAbertura = ABRE_HORA * 60 + ABRE_MIN;
+  const minutosFechamento = FECHA_HORA * 60 + FECHA_MIN;
 
   let estaAberto = false;
 
   // 1. Verifica se hoje é um dia fechado
   if (!DIAS_FECHADOS.includes(diaSemana)) {
-    // 2. Verifica o horário
-    if (horaAtual >= HORA_ABERTURA && horaAtual <= HORA_FECHAMENTO) {
+    // 2. Verifica se o horário atual está dentro do intervalo
+    if (minutosAtuais >= minutosAbertura && minutosAtuais < minutosFechamento) {
       estaAberto = true;
     }
   }
 
-  // Atualiza o HTML
+  // Atualiza o HTML e garante que o zero apareça (ex: 18:05 em vez de 18:5)
+  const abreMinFormatado = ABRE_MIN.toString().padStart(2, "0");
+  const fechaMinFormatado = FECHA_MIN.toString().padStart(2, "0");
+
   statusBox.classList.remove("status-open", "status-closed");
 
   if (estaAberto) {
     statusBox.classList.add("status-open");
-    // Usei a bolinha real (•) em vez do código
-    statusText.innerText = `Aberto agora • Fecha às ${HORA_FECHAMENTO}:00`;
+    statusText.innerText = `Aberto agora • Fecha às ${FECHA_HORA}:${fechaMinFormatado}`;
   } else {
     statusBox.classList.add("status-closed");
-    // Usei a bolinha real (•) em vez do código
-    statusText.innerText = `Fechado • Abre às ${HORA_ABERTURA}:30`;
+    statusText.innerText = `Fechado • Abre às ${ABRE_HORA}:${abreMinFormatado}`;
   }
 }
