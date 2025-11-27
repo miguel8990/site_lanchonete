@@ -1378,3 +1378,184 @@ footer {
 .carousel {
   min-height: 400px;
 }
+/* --- CHECKBOX RETIRADA NO LOCAL --- */
+
+/* --- CHECKBOX RETIRADA NO LOCAL (Final) --- */
+.pickup-option {
+  margin: 15px 0;
+  background: transparent;
+  border: none;
+  padding: 5px 0;
+}
+
+/* 1. O PAI: Força tudo a ficar na mesma linha */
+.checkbox-container {
+  display: flex !important; /* !important garante que nada quebre isso */
+  flex-direction: row; /* Garante a direção linha */
+  align-items: center; /* Centraliza verticalmente */
+  cursor: pointer;
+  color: var(--color-gold);
+  gap: 10px; /* Espaço entre quadrado e texto */
+}
+
+/* 2. O QUADRADO (Input) */
+.checkbox-container input {
+  -webkit-appearance: none;
+  appearance: none;
+
+  /* Tamanho e Forma */
+  width: 22px;
+  height: 22px;
+  min-width: 22px; /* Trava o tamanho mínimo */
+  border: 2px solid var(--color-gold);
+  border-radius: 6px;
+
+  /* Centraliza o check dentro do quadrado */
+  display: grid;
+  place-content: center;
+
+  margin: 0;
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Check marcado */
+.checkbox-container input:checked {
+  background-color: var(--color-gold);
+}
+
+/* O símbolo "V" */
+.checkbox-container input::before {
+  content: "✔";
+  color: var(--color-black);
+  font-size: 14px;
+  font-weight: 900;
+  transform: scale(0);
+  transition: 0.2s transform ease-in-out;
+}
+
+.checkbox-container input:checked::before {
+  transform: scale(1);
+}
+
+/* 3. O TEXTO */
+.checkbox-container .label-text {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+
+  /* Ajuste fino de altura */
+  position: relative;
+  top: -2px; /* Ajuste aqui se precisar subir ou descer */
+}
+
+/* Remove check padrão antigo se existir */
+.checkmark {
+  display: none;
+}
+
+/* 4. ANIMAÇÃO DE BLOQUEIO */
+.address-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  filter: grayscale(1);
+  transition: all 0.3s ease;
+}
+
+.address-disabled input {
+  background-color: #222 !important;
+  color: #555 !important;
+  border-color: #333 !important;
+}
+
+/* --- STATUS DE FUNCIONAMENTO (Aberto/Fechado) --- */
+
+/* Ajuste do container do logo para empilhar o texto */
+.brand-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.status-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  margin-top: -5px; /* Aproxima do título */
+  font-weight: 500;
+}
+
+/* A Bolinha */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* Estilo Aberto (Verde Neon) */
+.status-open .status-dot {
+  background-color: #2ecc71;
+  box-shadow: 0 0 8px #2ecc71; /* Brilho */
+  animation: pulse-green 2s infinite;
+}
+
+.status-open .status-text {
+  color: #2ecc71;
+}
+
+/* Estilo Fechado (Vermelho) */
+.status-closed .status-dot {
+  background-color: #e74c3c;
+  box-shadow: 0 0 8px #e74c3c;
+  animation: pulse-red 2s infinite;
+}
+
+.status-closed .status-text {
+  color: #e74c3c;
+}
+
+/* Animação de "Respiração" da bolinha verde */
+@keyframes pulse-green {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(46, 204, 113, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+  }
+}
+
+@keyframes pulse-red {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(231, 76, 60, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+  }
+}
+
+/* Ajuste Mobile para não quebrar o header */
+@media (max-width: 768px) {
+  .brand-wrapper {
+    margin-left: 5px;
+  }
+  .status-box {
+    font-size: 0.75rem;
+  }
+}

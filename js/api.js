@@ -40,6 +40,16 @@ export const fetchMenu = () => {
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
           ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
+          ],
         },
         {
           id: 2,
@@ -72,6 +82,16 @@ export const fetchMenu = () => {
             { nome: "Ovo", price: 2.0 },
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
+          ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
           ],
         },
         {
@@ -106,6 +126,16 @@ export const fetchMenu = () => {
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
           ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
+          ],
         },
         {
           id: 4,
@@ -138,6 +168,16 @@ export const fetchMenu = () => {
             { nome: "Ovo", price: 2.0 },
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
+          ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
           ],
         },
         {
@@ -172,6 +212,16 @@ export const fetchMenu = () => {
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
           ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
+          ],
         },
         {
           id: 6,
@@ -204,6 +254,16 @@ export const fetchMenu = () => {
             { nome: "Ovo", price: 2.0 },
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
+          ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
           ],
         },
         {
@@ -238,6 +298,16 @@ export const fetchMenu = () => {
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
           ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
+          ],
         },
         {
           id: 8,
@@ -271,6 +341,16 @@ export const fetchMenu = () => {
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
           ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
+          ],
         },
         {
           id: 9,
@@ -301,6 +381,16 @@ export const fetchMenu = () => {
             { nome: "Ovo", price: 2.0 },
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
+          ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
           ],
         },
         {
@@ -335,6 +425,16 @@ export const fetchMenu = () => {
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
           ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
+          ],
         },
         {
           id: 11,
@@ -367,6 +467,16 @@ export const fetchMenu = () => {
             { nome: "Ovo", price: 2.0 },
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
+          ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
           ],
         },
       ]);
@@ -408,6 +518,16 @@ export const fetchCombos = () => {
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
           ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
+          ],
         },
         {
           id: 102,
@@ -438,6 +558,16 @@ export const fetchCombos = () => {
             { nome: "Ovo", price: 2.0 },
             { nome: "Requeijão ou cheddar", price: 2.0 },
             { nome: "Batata Palha", price: 3.0 },
+          ],
+
+          bebidas: [
+            { nome: "Cotuba 2L", price: 10.0 },
+            { nome: "Cotuba 1L", price: 8.0 },
+            { nome: "Cotuba Lata 350ml", price: 5.0 },
+            { nome: "Coca-Cola 2L", price: 12.0 },
+            { nome: "Coca-Cola Lata 350ml", price: 5.0 },
+            { nome: "Skol Lata 350ml", price: 5.0 },
+            { nome: "Antartica Lata 350ml", price: 5.0 },
           ],
         },
       ]);

@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm();
   initMobileMenu();
   initScrollEffects();
+  initHorarioFuncionamento();
 
   // Fecha o modal se clicar no fundo escuro
   const modalOverlay = document.getElementById("modal-personalizacao");
@@ -313,7 +314,27 @@ function initContactForm() {
   if (!form) return;
 
   const phoneInput = form.querySelector('input[name="phone"]');
+  const retiradaCheck = document.getElementById("retirada-check"); // NOVO
+  const addressSection = document.querySelector(".address-section"); // NOVO
 
+  // 1. Lógica do Checkbox (Bloquear/Desbloquear)
+  if (retiradaCheck && addressSection) {
+    retiradaCheck.addEventListener("change", (e) => {
+      const inputsEndereco = addressSection.querySelectorAll("input");
+
+      if (e.target.checked) {
+        // Se marcou "Retirar": Bloqueia tudo
+        addressSection.classList.add("address-disabled");
+        inputsEndereco.forEach((input) => (input.disabled = true));
+      } else {
+        // Se desmarcou: Libera tudo
+        addressSection.classList.remove("address-disabled");
+        inputsEndereco.forEach((input) => (input.disabled = false));
+      }
+    });
+  }
+
+  // Mascara de telefone (mantida igual)
   phoneInput.addEventListener("input", function (e) {
     let value = e.target.value.replace(/\D/g, "");
     if (value.length > 11) value = value.slice(0, 11);
@@ -332,17 +353,21 @@ function initContactForm() {
     );
   });
 
+  // ENVIO DO FORMULÁRIO
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     let temErro = false;
     const nameInput = form.querySelector('input[name="name"]');
+
+    // Validação Nome
     if (nameInput.value.trim().length < 3) {
       marcarErro(nameInput);
       alert("Por favor, digite seu nome completo.");
       temErro = true;
     }
 
+    // Validação Telefone
     const rawPhone = phoneInput.value.replace(/\D/g, "");
     if (rawPhone.length < 10 || rawPhone.length > 11) {
       marcarErro(phoneInput);
@@ -350,13 +375,19 @@ function initContactForm() {
       temErro = true;
     }
 
+    // --- NOVA LÓGICA DE VALIDAÇÃO DE ENDEREÇO ---
+    const isRetirada = retiradaCheck ? retiradaCheck.checked : false;
     const numberInput = form.querySelector('input[name="number"]');
 
-    if (!numberInput.value.trim()) {
-      marcarErro(numberInput);
-      if (!temErro) alert("Por favor, preencha o número do endereço.");
-      temErro = true;
+    // Só valida endereço se NÃO for retirada
+    if (!isRetirada) {
+      if (!numberInput.value.trim()) {
+        marcarErro(numberInput);
+        if (!temErro) alert("Por favor, preencha o número do endereço.");
+        temErro = true;
+      }
     }
+    // ---------------------------------------------
 
     if (temErro) return;
 
@@ -391,24 +422,50 @@ function initContactForm() {
       resumoTexto = "Nenhum item selecionado (Apenas Contato).";
     }
 
+    // --- PREPARAÇÃO DOS DADOS PARA O WHATSAPP ---
     const dadosCompletos = {
       name: nameInput.value,
       phone: phoneInput.value,
-      address: form.querySelector('input[name="address"]').value,
-      number: numberInput.value,
-      bairro: form.querySelector('input[name="bairro"]').value,
-      comp: form.querySelector('input[name="comp"]').value,
+      // Se for retirada, enviamos um texto fixo para a API não deixar em branco
+      address: isRetirada
+        ? "RETIRADA NO LOCAL"
+        : form.querySelector('input[name="address"]').value,
+      number: isRetirada ? "-" : numberInput.value,
+      bairro: isRetirada
+        ? "-"
+        : form.querySelector('input[name="bairro"]').value,
+      comp: isRetirada ? "" : form.querySelector('input[name="comp"]').value,
+
       message: form.querySelector('textarea[name="message"]').value,
       resumoCarrinho: resumoTexto,
       total: total,
     };
 
     try {
+      if (window.va) {
+        window.va("event", {
+          name: "Pedido Realizado",
+          data: {
+            valor: total.toFixed(2),
+            tipo: isRetirada ? "Retirada" : "Entrega",
+          },
+        });
+      }
+
       await submitOrder(dadosCompletos);
+
       carrinho = [];
       atualizarCarrinhoUI();
       atualizarBotoesMenu();
       form.reset();
+
+      // Resetar visual do formulário (liberar campos)
+      if (retiradaCheck) {
+        retiradaCheck.checked = false;
+        addressSection.classList.remove("address-disabled");
+        const inputsEndereco = addressSection.querySelectorAll("input");
+        inputsEndereco.forEach((input) => (input.disabled = false));
+      }
     } catch (error) {
       alert("Erro ao abrir o WhatsApp. Tente novamente.");
       console.error(error);
@@ -507,7 +564,8 @@ function verificarOpcoes(itemId, qtdId) {
   if (
     (produto.carnes && produto.carnes.length > 0) ||
     (produto.adicionais && produto.adicionais.length > 0) ||
-    (produto.acompanhamentos && produto.acompanhamentos.length > 0)
+    (produto.acompanhamentos && produto.acompanhamentos.length > 0) ||
+    (produto.bebidas && produto.bebidas.length > 0)
   ) {
     // CORRETO: Passa o ID do card para resetar depois
     abrirModal(produto, quantidade, qtdId);
@@ -529,6 +587,7 @@ function abrirModal(produto, quantidadeInicial, qtdIdCard) {
     qtdIdCard: qtdIdCard, // Agora essa variável existe!
     adicionaisSelecionados: [],
     acompanhamentosSelecionados: [],
+    bebidasSelecionadas: [],
     carneSelecionada: null,
     precoTotalAtual: produto.price,
   };
@@ -581,6 +640,12 @@ function abrirModal(produto, quantidadeInicial, qtdIdCard) {
     "lista-acompanhamentos",
     "modal-acompanhamentos-section",
     "acomp"
+  );
+  gerarListaCheckbox(
+    produto.bebidas,
+    "lista-bebidas",
+    "modal-bebidas-section",
+    "bebida"
   );
 
   atualizarPrecoModal();
@@ -636,6 +701,15 @@ function atualizarSelecaoModal() {
       itemEmPersonalizacao.acompanhamentos[box.value]
     );
   });
+  const checksBebidas = document.querySelectorAll(
+    'input[data-type="bebida"]:checked'
+  );
+  itemEmPersonalizacao.bebidasSelecionadas = [];
+  checksBebidas.forEach((box) => {
+    itemEmPersonalizacao.bebidasSelecionadas.push(
+      itemEmPersonalizacao.bebidas[box.value]
+    );
+  });
 
   atualizarPrecoModal();
 }
@@ -650,6 +724,9 @@ function atualizarPrecoModal() {
   );
   itemEmPersonalizacao.acompanhamentosSelecionados.forEach(
     (acomp) => (precoBase += acomp.price)
+  );
+  itemEmPersonalizacao.bebidasSelecionadas.forEach(
+    (beb) => (precoBase += beb.price)
   );
 
   itemEmPersonalizacao.precoTotalAtual = precoBase;
@@ -697,6 +774,7 @@ function adicionarItemDoModal() {
   const todosExtras = [
     ...itemEmPersonalizacao.adicionaisSelecionados,
     ...itemEmPersonalizacao.acompanhamentosSelecionados,
+    ...itemEmPersonalizacao.bebidasSelecionadas,
   ]
     .map((i) => i.nome)
     .join(", ");
@@ -724,4 +802,43 @@ function adicionarItemDoModal() {
 
   fecharModal();
   animarCarrinho();
+}
+
+// --- SISTEMA DE HORÁRIO DE FUNCIONAMENTO ---
+function initHorarioFuncionamento() {
+  const statusBox = document.getElementById("status-funcionamento");
+  const statusText = statusBox.querySelector(".status-text");
+
+  // CONFIGURAÇÃO DOS HORÁRIOS (Formato 24h)
+  const HORA_ABERTURA = 18; // 18:00
+  const HORA_FECHAMENTO = 22; // 22:59
+  // Dias que NÃO abre (0 = Domingo, 1 = Segunda, ... 6 = Sábado)
+  const DIAS_FECHADOS = []; // Ex: [1] para fechar segunda-feira
+
+  const agora = new Date();
+  const horaAtual = agora.getHours();
+  const diaSemana = agora.getDay();
+
+  let estaAberto = false;
+
+  // 1. Verifica se hoje é um dia fechado
+  if (!DIAS_FECHADOS.includes(diaSemana)) {
+    // 2. Verifica o horário
+    if (horaAtual >= HORA_ABERTURA && horaAtual <= HORA_FECHAMENTO) {
+      estaAberto = true;
+    }
+  }
+
+  // Atualiza o HTML
+  statusBox.classList.remove("status-open", "status-closed");
+
+  if (estaAberto) {
+    statusBox.classList.add("status-open");
+    // Usei a bolinha real (•) em vez do código
+    statusText.innerText = `Aberto agora • Fecha às ${HORA_FECHAMENTO}:00`;
+  } else {
+    statusBox.classList.add("status-closed");
+    // Usei a bolinha real (•) em vez do código
+    statusText.innerText = `Fechado • Abre às ${HORA_ABERTURA}:30`;
+  }
 }
