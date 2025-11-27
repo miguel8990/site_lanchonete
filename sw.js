@@ -1,4 +1,4 @@
-const CACHE_NAME = "cegonha-v1";
+const CACHE_NAME = "cegonha-v1.1";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
