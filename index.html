@@ -73,6 +73,15 @@
 
       gtag("config", "G-Y7X7N5JNJP");
     </script>
+
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#d93025" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <link rel="apple-touch-icon" href="assets/icon-192.png" />
   </head>
 
   <body>
@@ -560,5 +569,15 @@
     </div>
 
     <script type="module" src="js/main.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("./sw.js")
+            .then((reg) => console.log("App pronto para instalar!", reg.scope))
+            .catch((err) => console.log("Falha ao registrar App:", err));
+        });
+      }
+    </script>
   </body>
 </html>
