@@ -853,4 +853,5 @@ function initHorarioFuncionamento() {
     statusBox.classList.add("status-closed");
     statusText.innerText = `Fechado • Abre às ${ABRE_HORA}:${abreMinFormatado}`;
   }
+  setTimeout(initHorarioFuncionamento, 60000);
 }
