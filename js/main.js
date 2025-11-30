@@ -859,3 +859,28 @@ function initHorarioFuncionamento() {
   }
   setTimeout(initHorarioFuncionamento, 60000);
 }
+
+// --- SISTEMA DE BANNER DE COOKIES (LGPD) ---
+document.addEventListener("DOMContentLoaded", () => {
+  const banner = document.getElementById("cookie-banner");
+  const btnAccept = document.getElementById("accept-cookies");
+
+  // 1. Verifica se já aceitou antes
+  if (!localStorage.getItem("lgpd_accepted")) {
+    // Pequeno delay para não assustar assim que entra
+    setTimeout(() => {
+      banner.classList.add("show");
+    }, 2000);
+  }
+
+  // 2. Ao clicar em "Entendi"
+  if (btnAccept) {
+    btnAccept.addEventListener("click", () => {
+      // Salva no navegador do cliente que ele aceitou
+      localStorage.setItem("lgpd_accepted", "true");
+
+      // Esconde o banner
+      banner.classList.remove("show");
+    });
+  }
+});

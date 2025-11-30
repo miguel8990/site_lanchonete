@@ -1559,3 +1559,51 @@ footer {
     font-size: 0.75rem;
   }
 }
+/* --- BANNER DE COOKIES (LGPD) --- */
+.cookie-banner {
+  position: fixed;
+  bottom: -100%; /* Começa escondido lá embaixo */
+  left: 0;
+  width: 100%;
+  background-color: rgba(26, 26, 26, 0.98); /* Fundo escuro quase sólido */
+  border-top: 1px solid var(--color-gold);
+  padding: 20px;
+  z-index: 5000; /* Acima de tudo (até do carrinho e modal) */
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+  transition: bottom 0.5s ease-in-out;
+}
+
+.cookie-banner.show {
+  bottom: 0; /* Sobe para aparecer */
+}
+
+.cookie-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; /* Mobile first: um embaixo do outro */
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+}
+
+.cookie-content p {
+  color: #fdfbf7;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.btn-cookie {
+  padding: 8px 25px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Ajuste para PC: Lado a lado */
+@media (min-width: 768px) {
+  .cookie-content {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
