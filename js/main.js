@@ -852,7 +852,7 @@ function initHorarioFuncionamento() {
   } else if (DIAS_FECHADOS.includes(diaSemana)) {
     // 2. FECHADO PORQUE É O DIA DE FOLGA (Sábado/Domingo)
     statusBox.classList.add("status-closed"); // Fica vermelho
-    statusText.innerText = "Dia de descanso da equipe. Voltamos amanhã!";
+    statusText.innerText = "Fechado • Voltamos amanhã.";
   } else {
     statusBox.classList.add("status-closed");
     statusText.innerText = `Fechado • Abre às ${ABRE_HORA}:${abreMinFormatado}`;
