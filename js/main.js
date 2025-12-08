@@ -5,6 +5,7 @@ import { fetchMenu, fetchCombos, submitOrder } from "./api.js";
 let carrinho = [];
 let menuGlobal = [];
 let itemEmPersonalizacao = null;
+let lojaAberta = false;
 
 // 2. Inicialização
 document.addEventListener("DOMContentLoaded", () => {
@@ -356,6 +357,11 @@ function initContactForm() {
   // ENVIO DO FORMULÁRIO
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (!lojaAberta) {
+      document.getElementById("modal-closed").style.display = "flex";
+      return; // Para tudo, não envia nada
+    }
 
     let temErro = false;
     const nameInput = form.querySelector('input[name="name"]');
@@ -818,7 +824,7 @@ function initHorarioFuncionamento() {
   const FECHA_MIN = 30; // 22:30
 
   // Dias que NÃO abre (0=Domingo, 1=Segunda ... 6=Sábado)
-  const DIAS_FECHADOS = [0, 5, 6];
+  const DIAS_FECHADOS = [0];
 
   const agora = new Date();
   const horaAtual = agora.getHours();
@@ -830,13 +836,13 @@ function initHorarioFuncionamento() {
   const minutosAbertura = ABRE_HORA * 60 + ABRE_MIN;
   const minutosFechamento = FECHA_HORA * 60 + FECHA_MIN;
 
-  let estaAberto = false;
+  lojaAberta = false;
 
   // 1. Verifica se hoje é um dia fechado
   if (!DIAS_FECHADOS.includes(diaSemana)) {
     // 2. Verifica se o horário atual está dentro do intervalo
     if (minutosAtuais >= minutosAbertura && minutosAtuais < minutosFechamento) {
-      estaAberto = true;
+      lojaAberta = true;
     }
   }
 
@@ -846,13 +852,13 @@ function initHorarioFuncionamento() {
 
   statusBox.classList.remove("status-open", "status-closed");
 
-  if (estaAberto) {
+  if (lojaAberta) {
     statusBox.classList.add("status-open");
     statusText.innerText = `Aberto agora • Fecha às ${FECHA_HORA}:${fechaMinFormatado}`;
   } else if (DIAS_FECHADOS.includes(diaSemana)) {
     // 2. FECHADO PORQUE É O DIA DE FOLGA (Sábado/Domingo)
     statusBox.classList.add("status-closed"); // Fica vermelho
-    statusText.innerText = "Fechado • Voltamos em breve.";
+    statusText.innerText = "Fechado • Voltamos amanhã";
   } else {
     statusBox.classList.add("status-closed");
     statusText.innerText = `Fechado • Abre às ${ABRE_HORA}:${abreMinFormatado}`;
@@ -884,3 +890,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+const btnEnviar = document.getElementById("btn-submit-pedido");
+if (btnEnviar) {
+  btnEnviar.addEventListener("click", (e) => {
+    // Se a loja estiver fechada, PARE TUDO imediatamente
+    if (!lojaAberta) {
+      e.preventDefault(); // Impede validação e envio
+      e.stopPropagation(); // Impede outros eventos
+
+      // Abre o modal de fechado
+      const modalClosed = document.getElementById("modal-closed");
+      if (modalClosed) modalClosed.style.display = "flex";
+
+      return false;
+    }
+    // Se estiver aberta, deixa o fluxo seguir normal (validação do form -> submit)
+  });
+}

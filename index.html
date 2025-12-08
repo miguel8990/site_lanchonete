@@ -586,6 +586,35 @@
       </div>
     </div>
 
+    <div id="modal-closed" class="modal-overlay" style="z-index: 5000">
+      <div
+        class="modal-content auth-content"
+        style="max-width: 400px; text-align: center; padding: 30px"
+      >
+        <div style="margin-bottom: 20px">
+          <i
+            class="fa-solid fa-store-slash"
+            style="font-size: 3rem; color: var(--color-red)"
+          ></i>
+        </div>
+        <h3 style="color: white; margin-bottom: 10px">Estamos Fechados!</h3>
+        <p style="color: #ccc; margin-bottom: 20px">
+          Nosso horário de funcionamento é de
+          <strong>18:30 às 22:30</strong> (exceto Domingos).
+        </p>
+        <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 25px">
+          Você pode montar seu pedido, mas só conseguirá finalizar quando
+          abrirmos.
+        </p>
+        <button
+          class="btn-primary full-width"
+          onclick="document.getElementById('modal-closed').style.display='none'"
+        >
+          Entendi, vou aguardar
+        </button>
+      </div>
+    </div>
+
     <script type="module" src="js/main.js"></script>
     <script>
       if ("serviceWorker" in navigator) {
