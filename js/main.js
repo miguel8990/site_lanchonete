@@ -824,7 +824,7 @@ function initHorarioFuncionamento() {
   const FECHA_MIN = 30; // 22:30
 
   // Dias que NÃO abre (0=Domingo, 1=Segunda ... 6=Sábado)
-  const DIAS_FECHADOS = [0, 6];
+  const DIAS_FECHADOS = [0, 5, 6];
 
   const agora = new Date();
   const horaAtual = agora.getHours();
@@ -858,7 +858,7 @@ function initHorarioFuncionamento() {
   } else if (DIAS_FECHADOS.includes(diaSemana)) {
     // 2. FECHADO PORQUE É O DIA DE FOLGA (Sábado/Domingo)
     statusBox.classList.add("status-closed"); // Fica vermelho
-    statusText.innerText = "Fechado • Voltamos amanhã";
+    statusText.innerText = "Fechado • Voltamos em breve";
   } else {
     statusBox.classList.add("status-closed");
     statusText.innerText = `Fechado • Abre às ${ABRE_HORA}:${abreMinFormatado}`;
