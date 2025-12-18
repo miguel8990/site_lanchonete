@@ -207,7 +207,6 @@ export const fetchMenu = () => {
 
           // Adicionais (Turbine seu lanche) continuam iguais
           adicionais: [
-            { nome: "Hambúrguer", price: 2.5 },
             { nome: "Hambúrguer Artesanal", price: 5.0 },
             { nome: "Mussarela", price: 3.0 },
             { nome: "Bacon", price: 3.0 },
