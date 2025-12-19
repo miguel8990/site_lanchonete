@@ -824,7 +824,7 @@ function initHorarioFuncionamento() {
   const FECHA_MIN = 30; // 22:30
 
   // Dias que NÃO abre (0=Domingo, 1=Segunda ... 6=Sábado)
-  const DIAS_FECHADOS = [0, 5, 6];
+  const DIAS_FECHADOS = [0];
 
   const agora = new Date();
   const horaAtual = agora.getHours();
